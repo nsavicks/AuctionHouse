@@ -73,9 +73,11 @@ ul#nav{
    margin-right: 30px;
 }
 
-h1#title {
+#header-logo {
    display: inline;
    margin-left: 30px;
+   width: 15%;
+   height: auto;
 }
 
 ul#nav li{
@@ -91,6 +93,7 @@ ul#nav li:last-child{
 
 ul#nav li:hover{
    border-bottom: white 5px solid;
+   transition: 0.2s;
 }
 
 ul#nav li.page-active{
