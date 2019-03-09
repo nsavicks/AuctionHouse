@@ -24,14 +24,14 @@ textarea{
    resize: none;
 }
 
-input[type=text], input[type=email], input[type=password], input[type=date], textarea, select{
+input[type=text], input[type=number], input[type=email], input[type=password], input[type=date], textarea, select{
    padding: 10px;
    border: 0px;
    border-bottom: #E0E0E0 2px solid;
    font-size: 15px;
 }
 
-input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=date]:focus, textarea:focus, input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, textarea:hover, select:hover{
+input[type=text]:focus,input[type=number]:focus,  input[type=email]:focus, input[type=password]:focus, input[type=date]:focus, textarea:focus, input[type=text]:hover, input[type=email]:hover, input[type=password]:hover, textarea:hover, select:hover{
    border-bottom-color: #009688;
 }
 
@@ -60,6 +60,35 @@ label {
    color: #00695C;
    font-weight: bold;
 }
+
+table{
+   width: 100%;
+   border: 0;
+   border-spacing: 0;
+   text-align: center;
+}
+
+table a{
+   color: #00695C;
+}
+
+tr{
+   padding: 10px;
+}
+
+tr:hover{
+   color: #00695C;
+}
+
+td, th{
+   padding: 5px;
+}
+
+tr:nth-child(even){
+   background: #F5F5F5;
+}
+
+
 
 /* Header and navigation */
 
@@ -228,19 +257,23 @@ input[type=radio]{
    height: 100%;
    background: #00695C;
    border-bottom: 3px solid #00695C;
-   align-content: center;
+   align-items: center;
+}
+
+.auctions-preview-title-left img{
+   height: 30px;
+   width: 30px;
+   margin-left: 10px;
 }
 
 .auctions-preview-title-left h1{
-   display: flex;
    font-weight: normal;
    font-size: 20px;
    color: white;
-   margin-left: 20px;
+   margin-left: 10px;
 }
 
 .auctions-preview-title-right{
-   display: flex;
    float: left;
    width: 80%;
    height: 100%;
@@ -380,4 +413,86 @@ input[type=radio]{
 
 #warning-content button:hover{
    margin-top: 2px;
+}
+
+/* MyAuctions page */
+
+#my-bids, #my-auctions{
+   width: 80%; 
+   margin: 0 auto;
+   margin-top: 30px;
+}
+
+/* User profile page */
+
+#user-profile-content{
+   width: 30%;
+   margin: 0 auto;
+   margin-top: 50px;
+   display: flex;
+}
+
+#user-profile-image{
+   text-align: center;
+}
+
+#user-profile-image img{
+   background: #F5F5F5;
+   width: 200px;
+   height: 200px;
+   margin-bottom: 10px;
+}
+
+#user-profile-image em{
+   color: #00695C;
+   font-size: 20;
+}
+
+
+#user-profile-info{
+   width: 70%;
+   margin-top: 50px;
+}
+
+.profile-info{
+   display: flex;
+   align-items: center;
+   margin-left: 20px;
+   border-bottom: 1px dashed #E0E0E0;
+   padding-bottom: 5px;
+   margin-bottom: 10px;
+}
+
+.profile-info img{
+   width: 30px;
+   height: 30px;
+}
+
+.profile-info em{
+   margin-left: 10px;
+   font-size: 20;
+   color: #00695C;
+}
+
+#user-rate{
+   margin: 0 auto;
+   margin-top: 20px;
+   overflow: hidden;
+   height: 200px;
+}
+
+#user-rate input[type=number]{
+   display: inline;
+   width: 20%;
+}
+#user-rate input[type=submit]{
+   display: inline;
+   width: 70%;
+   margin-left: 20px;
+   margin-top: 0;
+}
+
+#user-rate input[type=submit]:hover{
+   position: relative;
+   top: 2px;
 }
