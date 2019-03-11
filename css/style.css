@@ -42,10 +42,17 @@ input[type=search]{
    background-repeat:no-repeat;
    background-position:left center;
    outline:0;
+   width: 70%;
+   transition: 0.5s;
 }
 
-input[type=search]:hover, input[type=search]:focus{
+input[type=search]:hover{
+   width: 100%;
+   transition: 0.5s;
+}
 
+input[type=search]:focus{
+   border-color: #00695C;
 }
 
 button,input[type=submit]{
@@ -435,7 +442,7 @@ input[type=radio]{
 
 /* MyAuctions page */
 
-#my-bids, #my-auctions{
+#my-bids, #owned-auctions{
    width: 80%; 
    margin: 0 auto;
    margin-top: 30px;
@@ -523,7 +530,11 @@ input[type=radio]{
    margin-top: 30px;
 }
 
-#pending-auctions img{
+#pending-auctions, #all-auctions, #all-users{
+   margin-bottom: 30px;
+}
+
+#pending-auctions img, #all-auctions img, #all-users img{
    width: 30px;
    height: auto;
    margin-right: 10px;
