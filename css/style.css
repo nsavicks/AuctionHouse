@@ -13,11 +13,11 @@ body{
 input,textarea,select{
    display: block;
    width: 100%;
-   margin-bottom: 20px;
    padding: 10px;
    border: 0px;
    border-bottom: #E0E0E0 2px solid;
    font-size: 15px;
+   margin-bottom: 20px;
 }
 
 textarea{
@@ -62,13 +62,13 @@ button,input[type=submit]{
    box-shadow: none;
    border: 0;
    border-bottom: 5px solid #00695C;
-   margin-top: 30px;
    font-size: 15px;
+   margin-top:20px;
 }
 
 input[type=submit]:hover{
    border-bottom: 3px solid #00695C;
-   margin-top: 32px;
+   margin-top: 22px;
 }
 
 button:hover{
@@ -117,6 +117,42 @@ tr:nth-child(even){
 
 /* Header and navigation */
 
+#top-bar{
+   background: white;
+   padding: 5px;
+   display: flex;
+   align-items: center;
+}
+
+#top-bar img{
+   width: 20px;
+   height: 20px;
+   margin-right: 5px;
+}
+
+#top-bar ul{
+   margin: 0;
+   margin-left: auto;
+}
+
+#top-bar li{
+   display: inline-flex;
+   list-style: none;
+   border-right: 1px dashed #111;
+   padding-right: 10px;
+   padding-left: 5px;
+   align-items: center;
+}
+
+#top-bar li:last-child{
+   border: none;
+}
+
+#top-bar a{
+   color: #111;
+   text-decoration: none;
+}
+
 header{
    background-color: #009688;
    color: white;
@@ -138,13 +174,12 @@ ul#nav{
    margin-left: auto;
 }
 
-
-
 ul#nav li{
    display: inline;
    list-style: none;
    margin-right: 0px;
    padding: 15px;
+   padding-bottom: 30px;
 }
 
 ul#nav li:last-child{
@@ -213,7 +248,6 @@ footer{
 
 #contact-form input,textarea{
    width: 100%;
-   margin-bottom: 10px;
 }
 
 /* Login page */
@@ -434,10 +468,11 @@ input[type=radio]{
    min-width: fit-content;
    margin-left: auto;
    margin-right: 30px;
+   margin-top: 0;
 }
 
 #warning-content button:hover{
-   margin-top: 2px;
+   margin-top: 2;
 }
 
 /* MyAuctions page */
@@ -503,7 +538,6 @@ input[type=radio]{
    margin: 0 auto;
    margin-top: 20px;
    overflow: hidden;
-   height: 200px;
 }
 
 #user-rate input[type=number]{
@@ -520,6 +554,10 @@ input[type=radio]{
 #user-rate input[type=submit]:hover{
    position: relative;
    top: 2px;
+}
+
+#change-password-button button{
+   width: 100%;
 }
 
 /* Admin panel */
@@ -542,4 +580,27 @@ input[type=radio]{
 
 .search-bar{
    width: 20%;
+}
+
+/* ChangePassword */
+
+#change-password{
+   width: 30%;
+   margin: 0 auto;
+   margin-top: 50px;
+}
+
+/* New Auction */
+
+#new-auction{
+   width: 30%;
+   margin: 0 auto;
+   margin-top: 30px;
+}
+#new-auction label{
+   display: block;
+}
+#new-auction input[type=number]{
+   width: 10%;
+   display: inline;
 }
