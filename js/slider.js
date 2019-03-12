@@ -1,3 +1,8 @@
+/*
+  Author: Nebojsa Savic
+  Team: BruteForce
+*/
+
 var slideIndex = 1;
 showSlides(slideIndex);
 
