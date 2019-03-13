@@ -15,26 +15,48 @@ body{
    overflow-x:hidden;
 }
 
-input,textarea,select{
+/* input,textarea,select{
    display: block;
    width: 100%;
    padding: 10px;
-   border: 0px;
+   border: none;
    border-bottom: #E0E0E0 2px solid;
    font-size: 15px;
    margin-bottom: 20px;
+}
+*/
+
+input, textarea, select {
+   width: 100%;
+   background: #F5F5F5;
+   padding: 20px;
+   border: none;
+   border-left: 5px solid #f4c23d;
+   color: #212121;
+   min-width: fit-content;
+   transition: 0.5s;
 }
 
 textarea{
    resize: none;
 }
 
+
 input:focus, input:hover, textarea:focus, textarea:hover, select:focus, select:hover{
-   border-bottom-color: #2f5e8e;
+   border-left-color: #2f5e8e;
+}
+
+input[type=number], select{
+   width: fit-content;
+}
+
+input[type=checkbox]{
+   margin-top: 20px;
 }
 
 input[type=file]{
    border: 0;
+   background: none;
 }
 
 input[type=search]{
@@ -69,6 +91,7 @@ button,input[type=submit]{
    border-bottom: 5px solid #204163;
    font-size: 15px;
    margin-top:20px;
+   transition: none;
 }
 
 input[type=submit]:hover{
@@ -80,13 +103,12 @@ button:hover{
    border-bottom: 3px solid #204163;
 }
 
-input[type=file]{
-   margin-top: 15px;
-}
-
 label {
-   color: #f4c23d;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   color: #2f5e8e;
    font-weight: bold;
+   display: block;
 }
 
 table{
@@ -109,8 +131,17 @@ tr:hover{
    color: #2f5e8e;
 }
 
-td, th{
+td{
    padding: 5px;
+}
+
+th{
+   padding: 10px;
+   border-bottom: 1px solid #2f5e8e;
+}
+
+th:hover{
+   color: black;
 }
 
 tr:nth-child(even){
@@ -146,7 +177,6 @@ tr:nth-child(even){
    padding-left: 5px;
    align-items: center;
 }
-
 
 #top-bar a{
    color: #E0E0E0;
@@ -303,12 +333,14 @@ input[type=radio]{
    margin: 0 auto;
    margin-bottom: 30px;
    padding: 0;
+   display: flex;
 }
 
 .auctions-preview-title-left{
    display: flex;
-   float: left;
    width: 20%;
+   min-width: fit-content;
+   padding-right: 10px;
    height: 100%;
    background: #2f5e8e;
    border-bottom: 3px solid #2f5e8e;
@@ -329,7 +361,6 @@ input[type=radio]{
 }
 
 .auctions-preview-title-right{
-   float: left;
    width: 80%;
    height: 100%;
    border-bottom: 3px solid #2f5e8e;
@@ -372,19 +403,29 @@ input[type=radio]{
 }
 
 .auction-preview-meta{
+   display: flex;
+   align-items: center;
    margin-left: 10px;
    margin-top: 20px;
    margin-bottom: 5px;
    border-top: 1px dashed #f4c23d;
    padding-top: 10px;
-   font-size: 0.8vw;
+   padding-bottom: 5px;
+   width: fit-content;
+   overflow: hidden;
 }
 
 .meta-clock, .meta-money{
-   display: inline-flex;
+   display: flex;
    align-items: center;
    text-align: center;
    margin-left: 10px;
+   justify-content: center;
+}
+
+.meta-clock{
+   border-right: 1px dashed #f4c23d;
+   padding-right: 10px;
 }
 
 .meta-clock em, .meta-money em{
@@ -394,11 +435,6 @@ input[type=radio]{
 .meta-clock img, .meta-money img{
    height: 20px;
    width: 20px;
-}
-
-.meta-clock{
-   border-right: 1px dashed #f4c23d;
-   padding-right: 10px;
 }
 
 .auction-preview-goto{
@@ -432,9 +468,10 @@ input[type=radio]{
 }
 
 .item-filter select {
-   width: 10%;
+   width: fit-content;
    margin: 0;
    border: 0;
+   background: none;
 }
 
 /* Warning message page */
@@ -509,6 +546,7 @@ input[type=radio]{
 
 #user-profile-right{
    width: 50%;
+   min-width: fit-content;
    margin-left: 30px;
 }
 
@@ -535,12 +573,12 @@ input[type=radio]{
 }
 
 #user-profile-change-password button{
-   margin-top: 0;
+   margin-top: 10px;
    width: 100%;
 }
 
 #user-profile-change-password button:hover{
-   margin-top: 2px;
+   margin-top: 12px;
 }
 
 
@@ -566,6 +604,7 @@ input[type=radio]{
 
 .search-bar{
    width: 20%;
+   min-width: 300px;
 }
 
 /* ChangePassword */
@@ -582,13 +621,6 @@ input[type=radio]{
    width: 30%;
    margin: 0 auto;
    margin-top: 30px;
-}
-#new-auction label{
-   display: block;
-}
-#new-auction input[type=number]{
-   width: 10%;
-   display: inline;
 }
 
 /* Single auction */
@@ -623,6 +655,7 @@ input[type=radio]{
    font-size: 20;
    display: flex;
    align-items: center;
+   white-space: nowrap;
 }
 
 #single-auction-price img{
@@ -703,11 +736,11 @@ input[type=radio]{
 }
 
 #single-auction-right input[type=submit]{
-   margin-top: 0;
+   margin-top: 10px;
    background: #f4c23d;
    border-color: #C39B30;
 }
 
 #single-auction-right input[type=submit]:hover{
-   margin-top: 2px;
+   margin-top: 12px;
 }
