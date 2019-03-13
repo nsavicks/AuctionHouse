@@ -735,8 +735,11 @@ input[type=radio]{
    margin-right: 10px;
 }
 
-#single-auction-right input[type=submit]{
+#single-auction-right input{
    margin-top: 10px;
+}
+
+#single-auction-right input[type=submit]{
    background: #f4c23d;
    border-color: #C39B30;
 }
