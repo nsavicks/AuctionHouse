@@ -15,17 +15,6 @@ body{
    overflow-x:hidden;
 }
 
-/* input,textarea,select{
-   display: block;
-   width: 100%;
-   padding: 10px;
-   border: none;
-   border-bottom: #E0E0E0 2px solid;
-   font-size: 15px;
-   margin-bottom: 20px;
-}
-*/
-
 input, textarea, select {
    width: 100%;
    background: #F5F5F5;
