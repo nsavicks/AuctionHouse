@@ -1,0 +1,114 @@
+<!--
+    Author: Nebojsa Savic
+    Team: BruteForce
+-->
+
+<html>
+
+<head>
+    <title>Profile - AuctionHouse&trade;</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <div id="top-bar">
+        <ul>
+            <li>
+                <img src="img/securityG.png">
+                <a href="Dashboard.htm">Dashboard</a>
+            </li>
+            <li>
+                <img src="img/gear.png">
+                <a href="ManageAccounts.htm">Manage Accounts</a>
+            </li>
+            <li>
+                <img src="img/personG.png">
+                <a href="UserProfile.htm">My Profile</a>
+            </li>
+        </ul>
+    </div>
+    <header>
+        <img id="header-logo" src="img/logo.png">
+        <ul id="nav">
+            <li><a href="Index.htm">Home</a></li>
+            <li><a href="Shop.htm">Shop</a></li>
+            <li><a href="NewAuction.htm">New Auction</a></li>
+            <li><a href="MyAuctions.htm">My Auctions</a></li>
+            <li><a href="Contact.htm">Contact</a></li>
+            <li><a href="Register.htm">Register</a></li>
+            <li><a href="Login.htm">Log in</a></li>
+        </ul>
+    </header>
+
+    <div id="page-title">
+        <img src="img/person.png" />
+        <h1>User Profile</h1>
+    </div>
+
+    <div id="user-profile-content">
+        <div id="user-profile-image">
+            <img src="img/no-image.png">
+            <em>@nsavic</em>
+        </div>
+
+        <div id="user-profile-right">
+            <div class="auctions-preview-title">
+                <div class="auctions-preview-title-left">
+                    <img src="img/edit.png">
+                    <h1>Profile Details</h1>
+                </div>
+                <div class="auctions-preview-title-right">
+                </div>
+            </div>
+            <div class="item-details">
+                <div class="item-detail">
+                    <p class="description">Person:</p>
+                    <p class="value">Nebojsa Savic</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">Birthday:</p>
+                    <p class="value">17-02-2019 10:00</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">Gender:</p>
+                    <p class="value">Male</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">State:</p>
+                    <p class="value">Serbia</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">E-mail:</p>
+                    <p class="value">testemail@gmail.com</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">Title:</p>
+                    <p class="value">Administrator</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">Rating:</p>
+                    <p class="value">5.0</p>
+                </div>
+            </div>
+
+            <div id="user-profile-right-buttons">
+                <div id="user-rate">
+                    <input type="number" name="user-rate" value="1" min="1" max="5">
+                    <input type="submit" name="submit-rate" value="Rate!">
+                </div>
+                <div id="user-profile-change-password">
+                    <button name="user-profile-changepw" onclick="location.href='ChangePassword.htm'">Change password</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2019 AuctionHouse</p>
+    </footer>
+</body>
+
+</html>
