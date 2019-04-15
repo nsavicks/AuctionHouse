@@ -16,7 +16,9 @@
         private $create_time;
         private $auction_state;
 
-        public function __construct($auction_id, $auction_name, $auction_description, $auction_owner, $category, $start_time, $end_time, $duration, $starting_price, $item_condition, $auction_pictures, $create_time, $auction_state){
+        public function __construct($auction_id, $auction_name, $auction_description, $auction_owner, $category, $start_time,
+         $end_time, $duration, $starting_price, $item_condition, $auction_pictures, $create_time, $auction_state)
+         {
             $this->auction_id = $auction_id;
             $this->auction_name = $auction_name;
             $this->auction_description = $auction_description;
@@ -43,10 +45,10 @@
             $sql = "SELECT * FROM auctions";
             $result = $db->query($sql);
 
-            $result_array = [];
+            $resultArray = [];
 
             foreach($result->fetchAll() as $row){
-                $result_array[] = new Auction(
+                $resultArray[] = new Auction(
                     $row['auction_id'],
                     $row['auction_name'],
                     $row['auction_description'],
@@ -63,7 +65,7 @@
                 );
             }
 
-            return $result_array;
+            return $resultArray;
         }
 
     }
