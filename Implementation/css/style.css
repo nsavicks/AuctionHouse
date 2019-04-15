@@ -148,12 +148,6 @@ tr:nth-child(even){
    align-items: center;
 }
 
-#top-bar p{
-   color: white;
-   margin: 0;
-   margin-left: 20px;
-}
-
 #top-bar img{
    width: 20px;
    height: 20px;

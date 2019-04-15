@@ -1,1 +1,1 @@
-In this folder goes all php files that are doing some work but are not pages.
+In this folder goes all .PHP files that represents some funcionality except pages itself
