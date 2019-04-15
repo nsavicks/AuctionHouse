@@ -1,3 +1,12 @@
+<script>    
+
+    function setActivePage(pageID){
+        var li = document.getElementById(pageID);
+        if (li != null) li.setAttribute("class","page-active");
+    }
+
+</script>
+
 <div id="top-bar">
     <ul>
         <li>
@@ -15,16 +24,53 @@
     </ul>
 </div>
 <header>
+
     <img id="header-logo" src="img/logo.png">
     <ul id="nav">
-        <li><a href="./">Home</a></li>
-        <li><a href="Shop">Shop</a></li>
-        <li><a href="NewAuction">New Auction</a></li>
-        <li><a href="MyAuctions">My Auctions</a></li>
-        <li><a href="Contact">Contact</a></li>
-        <li><a href="Register">Register</a></li>
-        <li><a href="Login">Log in</a></li>
+        <li id="Home"><a href="./">Home</a></li>
+        <li id="Shop"><a href="Shop">Shop</a></li>
+        <li id="NewAuction"><a href="NewAuction">New Auction</a></li>
+        <li id="MyAuctions"><a href="MyAuctions">My Auctions</a></li>
+        <li id="Contact"><a href="Contact">Contact</a></li>
+        <li id="Register"><a href="Register">Register</a></li>
+        <li id="Login"><a href="Login">Log in</a></li>
     </ul>
+
+    <?php
+        if(isset($controllerName)){
+            switch($controllerName){
+                case "ShopController":
+                    $pageID = "Shop";
+                    break;
+                case "NewAuctionController":
+                    $pageID = "NewAuction";
+                    break;
+                case "MyAuctionsController":
+                    $pageID = "MyAuctions";
+                    break;
+                case "ContactController":
+                    $pageID = "Contact";
+                    break;
+                case "RegisterController":
+                    $pageID = "Register";
+                    break;
+                case "LoginController":
+                    $pageID = "Login";
+                    break;
+                default:
+                    $pageID = "";
+                    break;
+            }
+        }
+        else{
+            $pageID = "Home";
+        }
+
+        echo "<script> 
+                setActivePage('" .$pageID . "');
+            </script>
+        ";
+    ?>
 </header>
 
 <div id="page-title">

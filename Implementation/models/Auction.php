@@ -41,7 +41,7 @@
             $db = dbConf::getInstance();
 
             $sql = "SELECT * FROM auctions";
-            $result = $db->query($sql);
+            $result = $db->query($sql);     
 
             $result_array = [];
 
@@ -61,6 +61,7 @@
                     $row['create_time'],
                     $row['auction_state'],
                 );
+
             }
 
             return $result_array;

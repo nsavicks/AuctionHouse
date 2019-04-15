@@ -1,15 +1,12 @@
 <?php
 
-    if (isset($_GET['url'])){
+    if (isset($controllerName)){
 
-        $url = explode("/", $_GET['url']);
-
-        require_once 'controllers/' . $url[0] . 'Controller.php';
+        require_once 'controllers/' . $controllerName . '.php';
         
-        $controller = new $url[0];
+        $controller = new $controllerName;
 
-        if (isset($url[1])){
-            $method = $url[1];
+        if (isset($method)){
             $controller->{$method}();
         }
         else{
@@ -18,9 +15,9 @@
 
     }
     else{
-        require_once 'controllers/defaultController.php';
+        require_once 'controllers/DefaultController.php';
         
-        $controller = new defaultController;
+        $controller = new DefaultController;
 
         $controller->default();
     }
