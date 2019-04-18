@@ -7,18 +7,18 @@
                 <p>' . $auction->auction_description . '</p>
                 <div class="auction-preview-meta">
                     <div class="meta-clock">
-                        <img src="img/clock.png">
+                        <img src="'. asset_url() . 'img/clock.png">
                         <em>' . $auction->end_time . '</em>
                     </div>
 
                     <div class="meta-money">
-                        <img src="img/money-icon.png">
+                        <img src="'. asset_url() . 'img/money-icon.png">
                         <em>' . $auction->starting_price . ' rsd.</em>
                     </div>
                 </div>
                 <a href="/SingleAuction?id=' . $auction->auction_id . '">
                     <div class="auction-preview-goto">
-                        <img src="img/arrow.png">
+                        <img src="'. asset_url() . 'img/arrow.png">
                     </div>
                 </a>
         </div>';

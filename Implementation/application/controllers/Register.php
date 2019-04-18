@@ -11,14 +11,14 @@
 
 		private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "Register";
-            $header_content["page_title"] = "Welcome to Auction house ™!";
-            $header_content["page_icon"] = "star";
+            $header_content["page_title"] = "Register";
+            $header_content["page_icon"] = "register";
 
             $this->load->view("header.php", $header_content);
             $this->load->view($page, $content);
             $this->load->view("footer.php");
 
-        }
+        } 
 
 		public function index(){
 			
@@ -28,7 +28,6 @@
 
 		public function Submit(){
 
-			$data["profile_picture"] = $this->input->post("ppicture");
 			$data["first_name"] = $this->input->post("fname");
 			$data["last_name"] = $this->input->post("lname");
 			$data["date_of_birth"] = $this->input->post("birthdate");
@@ -37,21 +36,48 @@
 			$data["telephone"] = $this->input->post("telephone");
 			$data["email"] = $this->input->post("email");
 			$data["username"] = $this->input->post("username");
-			$data["password"] = $this->input->post("password");
+			$data["password"] = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
 			$data["create_time"] = date("Y-m-d H:i:s");;
 
 			$checkUsername = $this->User->getUserHavingUsername($data["username"]);
 			$checkEmail = $this->User->getUserHavingEmail($data["email"]);
 
+			// Check if username exist
+
 			if (count($checkUsername) > 0){
 				redirect("InfoMessage/RegistrationFailedBadUsername");
 			}
+
+			// Check if email exist
 
 			if (count($checkEmail) > 0){
 				redirect("InfoMessage/RegistrationFailedBadEmail");
 			}
 
-			// telephon regex
+			// Check telephone format
+
+
+			// Upload profile picture
+
+			$path = "assets/MEDIA/users/" . $data["username"];
+
+			if (!file_exists($path)){
+				mkdir($path, 0777, true);
+			}
+
+			$config["upload_path"] = $path . "/";
+			$config["allowed_types"] = 'gif|jpg|png';
+
+            $this->upload->initialize($config);
+
+            if (! $this->upload->do_upload("ppicture")){
+
+            	redirect("InfoMessage/PictureUploadFailed");  	
+            }
+
+            $data["profile_picture"] = $this->upload->data("file_name");
+
+            // Create user
 
 			$this->User->createNewUser($data);
 

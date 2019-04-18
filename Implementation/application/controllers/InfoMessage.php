@@ -52,6 +52,15 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		public function PictureUploadFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Registration failed: Profile picture upload failed!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . "Register";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
 		public function RegistrationSuccessful(){
 			$content["icon"] = "check";
 			$content["message"] = "Registration successful: You can now login with your account!";
@@ -60,6 +69,7 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
+
 
 	}
 
