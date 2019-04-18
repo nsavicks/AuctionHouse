@@ -31,7 +31,7 @@
         </select>
 
         <label for="telephone">Telephone</label>
-        <input type="tel" placeholder="Your telephone number...">
+        <input type="tel" name="telephone" placeholder="Your telephone number...">
 
         <label for="email">E-mail</label>
         <input type="email" name="email" placeholder="Your e-mail address..." required>

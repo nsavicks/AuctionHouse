@@ -22,6 +22,10 @@
 			return $this->db->get()->result();
 		}
 
+		public function createNewUser($data){
+			$this->db->insert("users", $data);
+		}
+
 	}
 	
 ?>
