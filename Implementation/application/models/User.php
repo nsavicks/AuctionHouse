@@ -25,8 +25,10 @@
 		public function isSuccessfulLogin($username, $password){
 			$this->db->from("users");
 			$this->db->where("username", $username);
-			$this->db->where("password", $password);
-			if (count($this->db->get()->result()) > 0){
+
+			$row = $this->db->get()->result();
+
+			if (count($row) == 1 && password_verify($password, $row["password"])){
 				return true;
 			}
 			else{
