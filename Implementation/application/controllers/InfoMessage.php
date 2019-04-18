@@ -70,6 +70,22 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		public function LoginSuccessful(){
+			$content["icon"] = "check";
+			$content["message"] = "Login successful!";
+			$content["buttonText"] = "My profile";
+			$content["buttonLink"] = base_url() . "Login";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+		public function LoginFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Login failed: check your username or password and try again.";
+			$content["buttonText"] = "Back";
+			$content["buttonLink"] = base_url() . "Login";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
 
 	}
 
