@@ -8,15 +8,19 @@
         }
 
         private function loadPageLayout($page, $content=[]){
-            $this->load->view("header.php",["controller"=>"Home"]);
+            $header_content["controller"] = "Home";
+            $header_content["page_title"] = "Welcome to Auction house ™!";
+            $header_content["page_icon"] = "star";
+
+            $this->load->view("header.php", $header_content);
             $this->load->view($page, $content);
             $this->load->view("footer.php");
         }
 
         public function index(){
-            $newest = $this->Auction->getNewestAuctions(4);
-            $featured = $this->Auction->getFeaturedAuctions(4);
-            $this->loadPageLayout("pages/Home.php", ["newest" => $newest, "featured" => $featured]);
+            $content["newest"] = $this->Auction->getNewestAuctions(4);
+            $content["featured"] = $this->Auction->getFeaturedAuctions(4);
+            $this->loadPageLayout("pages/Home.php", $content);
         }
 
     }

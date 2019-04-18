@@ -33,6 +33,11 @@
 
     echo '</header>';
 
-    require_once 'include/page-title.inc.php';
+    echo '
+        <div id="page-title">
+            <img src="' . asset_url() . 'img/' . $page_icon . '.png" />
+            <h1>' . $page_title . '</h1>
+        </div>
+        ';
             
 ?>

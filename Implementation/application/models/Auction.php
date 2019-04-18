@@ -21,13 +21,9 @@
 
         public function getFeaturedAuctions($limit = null){
 
-            $this->db->select("*, MAX(b.bid_value) as 'highest_bid'");
-            $this->db->from("auctions a");
-            $this->db->from("bids b");
-            $this->db->where("a.auction_id = b.auction_id");
-            $this->db->where("a.auction_state = 'Active'");
-            $this->db->group_by("a.auction_id");
-            $this->db->order_by("COUNT(*)","DESC");
+            $this->db->select("*");
+            $this->db->from("auctions_info_view a");
+            $this->db->order_by("a.bids_count DESC");
 
             if ($limit != null){
                 return $this->db->limit($limit)->get()->result();

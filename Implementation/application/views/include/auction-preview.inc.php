@@ -13,7 +13,7 @@
 
                     <div class="meta-money">
                         <img src="img/money-icon.png">
-                        <em>' . $auction->starting_price . '</em>
+                        <em>' . $auction->starting_price . ' rsd.</em>
                     </div>
                 </div>
                 <a href="/SingleAuction?id=' . $auction->auction_id . '">
