@@ -1,7 +1,7 @@
 
 <div id="register-box">
 
-        <?php form_open('Register/Submit'); ?>
+        <?php echo form_open('Register/Submit'); ?>
 
         <label for="ppicture">Profile picture</label>
         <input type="file" name="ppicture" accept=".png,.jpg">
