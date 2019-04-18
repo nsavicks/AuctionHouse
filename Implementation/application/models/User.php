@@ -23,14 +23,10 @@
 		}
 
 		public function isSuccessfulLogin($username, $password){
-			$sqlQuery = "
-				SELECT COUNT(*)
-				FROM users
-				WHERE username = ? AND password = ?
-			"
-			$query = $this->db->query($sqlQuery, array($username, $password));
-
-			if ($query->num_rows() > 0){
+			$this->db->from("users");
+			$this->db->where("username", $username);
+			$this->db->where("password", $password);
+			if (count($this->db->get()->result()) > 0){
 				return true;
 			}
 			else{
