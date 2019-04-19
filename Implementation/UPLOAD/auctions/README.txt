@@ -1,0 +1,1 @@
+In this folder we create subfolder for each auction where auction files and images will be stored
