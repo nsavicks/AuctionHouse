@@ -28,7 +28,7 @@
 
 			$row = $this->db->get()->result();
 
-			if (count($row) == 1 && password_verify($password, $row["password"])){
+			if (count($row) == 1 && password_verify($password, $row[0]->password)){
 				return true;
 			}
 			else{

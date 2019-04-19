@@ -25,8 +25,8 @@
             $password = $this->input->post("password");
 
             if ($this->User->isSuccessfulLogin($username, $password)){
-                $row = $this->User->getUserHavingUsername($username);
-                $this->session->set_userdata($row);
+                $user = $this->User->getUserHavingUsername($username)[0];
+                $this->session->set_userdata("user", $user);
                 redirect("InfoMessage/LoginSuccessful");
             }
             else{

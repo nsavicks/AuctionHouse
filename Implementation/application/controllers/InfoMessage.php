@@ -74,7 +74,7 @@
 			$content["icon"] = "check";
 			$content["message"] = "Login successful!";
 			$content["buttonText"] = "My profile";
-			$content["buttonLink"] = base_url() . "Login";
+			$content["buttonLink"] = base_url() . "Profile?username=" . $this->session->userdata("user")->username;
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
@@ -83,6 +83,15 @@
 			$content["message"] = "Login failed: check your username or password and try again.";
 			$content["buttonText"] = "Back";
 			$content["buttonLink"] = base_url() . "Login";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function LogoutSuccessful(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully logged out!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
