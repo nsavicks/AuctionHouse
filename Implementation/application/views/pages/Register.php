@@ -4,7 +4,7 @@
         <?php echo form_open_multipart('Register/Submit'); ?>
 
         <label for="ppicture">Profile picture</label>
-        <input type="file" name="ppicture" accept=".png,.jpg">
+        <input type="file" name="ppicture" accept=".png,.jpg,.gif">
 
         <label for="fname">First Name</label>
         <input type="text" name="fname" placeholder="Your first name..." required>

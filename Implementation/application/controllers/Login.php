@@ -17,21 +17,37 @@
         }
 
         public function index(){
-            $this->loadPageLayout("pages/Login");
+
+            if ($this->session->has_userdata("user")){
+
+                redirect("InfoMessage/PageNotFound");
+            }
+            else{
+
+                $this->loadPageLayout("pages/Login");
+            }
         }
 
         public function Submit(){
-            $username = $this->input->post("username");
-            $password = $this->input->post("password");
 
-            if ($this->User->isSuccessfulLogin($username, $password)){
-                $user = $this->User->getUserHavingUsername($username)[0];
-                $this->session->set_userdata("user", $user);
-                redirect("InfoMessage/LoginSuccessful");
+            if ($this->session->has_userdata("user")){
+                
+                redirect("InfoMessage/PageNotFound");
             }
             else{
-                redirect("InfoMessage/LoginFailed");
-            }
+
+                $username = $this->input->post("username");
+                $password = $this->input->post("password");
+
+                if ($this->User->isSuccessfulLogin($username, $password)){
+                    $user = $this->User->getUserHavingUsername($username)[0];
+                    $this->session->set_userdata("user", $user);
+                    redirect("InfoMessage/LoginSuccessful");
+                }
+                else{
+                    redirect("InfoMessage/LoginFailed");
+                }
+            }     
         }
 
     }

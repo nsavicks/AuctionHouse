@@ -21,67 +21,85 @@
         } 
 
 		public function index(){
-			
-			$this->loadPageLayout("pages/Register");
 
+			if ($this->session->has_userdata("user")){
+
+				redirect("InfoMessage/PageNotFound");
+			}
+			else{
+
+				$this->loadPageLayout("pages/Register");
+			}
 		}
 
 		public function Submit(){
 
-			$data["first_name"] = $this->input->post("fname");
-			$data["last_name"] = $this->input->post("lname");
-			$data["date_of_birth"] = $this->input->post("birthdate");
-			$data["gender"] = $this->input->post("gender");
-			$data["state"] = $this->input->post("state");
-			$data["telephone"] = $this->input->post("telephone");
-			$data["email"] = $this->input->post("email");
-			$data["username"] = $this->input->post("username");
-			$data["password"] = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
-			$data["create_time"] = date("Y-m-d H:i:s");;
-
-			$checkUsername = $this->User->getUserHavingUsername($data["username"]);
-			$checkEmail = $this->User->getUserHavingEmail($data["email"]);
-
-			// Check if username exist
-
-			if (count($checkUsername) > 0){
-				redirect("InfoMessage/RegistrationFailedBadUsername");
+			if ($this->session->has_userdata("user")){
+				
+				redirect("InfoMessage/PageNotFound");
 			}
+			else{
 
-			// Check if email exist
+				$data["first_name"] = $this->input->post("fname");
+				$data["last_name"] = $this->input->post("lname");
+				$data["date_of_birth"] = $this->input->post("birthdate");
+				$data["gender"] = $this->input->post("gender");
+				$data["state"] = $this->input->post("state");
+				$data["telephone"] = $this->input->post("telephone");
+				$data["email"] = $this->input->post("email");
+				$data["username"] = $this->input->post("username");
+				$data["password"] = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
+				$data["create_time"] = date("Y-m-d H:i:s");;
 
-			if (count($checkEmail) > 0){
-				redirect("InfoMessage/RegistrationFailedBadEmail");
-			}
+				$checkUsername = $this->User->getUserHavingUsername($data["username"]);
+				$checkEmail = $this->User->getUserHavingEmail($data["email"]);
 
-			// Check telephone format
+				// Check if username exist
+
+				if (count($checkUsername) > 0){
+					redirect("InfoMessage/RegistrationFailedBadUsername");
+				}
+
+				// Check if email exist
+
+				if (count($checkEmail) > 0){
+					redirect("InfoMessage/RegistrationFailedBadEmail");
+				}
+
+				// Check telephone format
 
 
-			// Upload profile picture
+				// Upload profile picture
 
-			$path = "assets/MEDIA/users/" . $data["username"];
+				if (!empty($_FILES['ppicture']['name'])){
 
-			if (!file_exists($path)){
-				mkdir($path, 0777, true);
-			}
+					$path = "UPLOAD/users/" . $data["username"];
 
-			$config["upload_path"] = $path . "/";
-			$config["allowed_types"] = 'gif|jpg|png';
+					if (!file_exists($path)){
+						mkdir($path, 0777, true);
+					}
 
-            $this->upload->initialize($config);
+					$config["upload_path"] = $path . "/";
+					$config["allowed_types"] = 'gif|jpg|png';
 
-            if (! $this->upload->do_upload("ppicture")){
+		            $this->upload->initialize($config);
 
-            	redirect("InfoMessage/PictureUploadFailed");  	
-            }
+		            if (! $this->upload->do_upload("ppicture")){
+		            	rmdir($path);
+		            	redirect("InfoMessage/PictureUploadFailed");  	
+		            }
 
-            $data["profile_picture"] = $this->upload->data("file_name");
+		            $data["profile_picture"] = $this->upload->data("file_name");
+				}
 
-            // Create user
+	         
+	            // Create user
 
-			$this->User->createNewUser($data);
+				$this->User->createNewUser($data);
 
-			redirect("InfoMessage/RegistrationSuccessful");
+				redirect("InfoMessage/RegistrationSuccessful");
+
+			} // END OF ELSE
 
 		}
 

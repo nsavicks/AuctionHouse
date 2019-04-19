@@ -7,8 +7,16 @@
 		}
 
 		public function index(){
-			$this->session->unset_userdata("user");
-			redirect("InfoMessage/LogoutSuccessful");
+
+			if ($this->session->has_userdata("user")){
+
+				$this->session->unset_userdata("user");
+				redirect("InfoMessage/LogoutSuccessful");
+			}
+			else{
+				redirect("InfoMessage/PageNotFound");
+			}
+			
 		}
 
 	}
