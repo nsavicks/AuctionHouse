@@ -7,7 +7,7 @@
         }
 
         public function getAllAuctions(){
-            return $this->db->get("auctions")->result();
+            return $this->db->get("auctions_info_view")->result();
         }
 
         public function getNewestAuctions($limit = null){
@@ -32,6 +32,16 @@
                 
                 return $this->db->get()->result();
             }
+        }
+
+        public function getPendingAuctions(){
+            $this->db->select("*");
+            $this->db->from("auctions");
+            $this->db->where("auction_state", "Pending confirmation");
+            $this->db->order_by("create_time DESC");
+
+            return $this->db->get()->result();
+
         }
 
     }

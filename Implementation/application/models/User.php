@@ -7,7 +7,11 @@
 		}
 
 		public function getAllUsers(){
-			return $this->db->get("users")->result();
+			$this->db->select("*");
+			$this->db->from("users u, user_ranks r");
+			$this->db->where("u.user_rank = r.rank_id");
+
+			return $this->db->get()->result();
 		}
 
 		public function getUserHavingUsername($username){

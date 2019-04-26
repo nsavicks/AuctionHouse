@@ -137,6 +137,32 @@ tr:nth-child(even){
    background: #F5F5F5;
 }
 
+.pagination {
+  display: inline-block;
+}
+
+.pagination button{
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  background-color: white;
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+
+.pagination button:disabled{
+   color: #ccc;
+}
+
+.search-pagination{
+   display: flex;
+   align-items: center;
+}
+
+.search-pagination .pagination{
+   margin-left: auto;
+}
 
 
 /* Header and navigation */
