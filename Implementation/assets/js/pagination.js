@@ -61,7 +61,7 @@
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'Dashboard/ApproveAuction?auction_id=' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/checkG.png"></a> <a href="' + base_url + 'Dashboard/DenyAuction?auction_id=' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/blockR.png"></a></td>';
+                    td.innerHTML = '<a href="' + base_url + 'Dashboard/ApproveAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/checkG.png"></a> <a href="' + base_url + 'Dashboard/DenyAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/blockR.png"></a></td>';
                     tr.appendChild(td);
 
                 }
@@ -80,7 +80,7 @@
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'Dashboard/DeleteAuction?auction_id=' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/remove.png"></a></td>';
+                    td.innerHTML = '<a href="' + base_url + 'Dashboard/DeleteAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/remove.png"></a></td>';
                     tr.appendChild(td);
 
                 }
@@ -112,11 +112,11 @@
 
                 var td = document.createElement("td");
                 td.innerHTML = `
-                        <a href="` + base_url + `ManageAccounts/AddAdministrator?username=` + data[id][i].username + `"><img src="` + asset_url + `img/add-administrator.png"></a>
-                        <a href="` + base_url + `ManageAccounts/AddModerator?username=` + data[id][i].username + `"><img src="` + asset_url + `img/add-moderator.png"></a>
-                        <a href="` + base_url + `ManageAccounts/ClearPrivileges?username=` + data[id][i].username + `"><img src="` + asset_url + `img/clear-privileges.png"></a>
-                        <a href="` + base_url + `ManageAccounts/BanUser?username=` + data[id][i].username + `"><img src="` + asset_url + `img/blockR.png"></a>
-                        <a href="` + base_url + `ManageAccounts/DeleteUser?username=` + data[id][i].username + `"><img src="` + asset_url + `img/remove.png"></a>
+                        <a href="` + base_url + `ManageAccounts/AddAdministrator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-administrator.png"></a>
+                        <a href="` + base_url + `ManageAccounts/AddModerator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-moderator.png"></a>
+                        <a href="` + base_url + `ManageAccounts/ClearPrivileges/` + data[id][i].username + `"><img src="` + asset_url + `img/clear-privileges.png"></a>
+                        <a href="` + base_url + `ManageAccounts/BanUser/` + data[id][i].username + `"><img src="` + asset_url + `img/blockR.png"></a>
+                        <a href="` + base_url + `ManageAccounts/DeleteUser/` + data[id][i].username + `"><img src="` + asset_url + `img/remove.png"></a>
                 `;
                 tr.appendChild(td);
             }

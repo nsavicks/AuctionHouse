@@ -96,6 +96,60 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		public function AuctionNotFound(){
+			$content["icon"] = "warning";
+			$content["message"] = "Error: The auction you have been looking for has not been found!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionApproveSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully approved auction!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Dashboard';
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionApproveFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Error: There was a problem approving auction";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Dashboard';
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionDenySuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully denied auction!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Dashboard';
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionDenyFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Error: There was a problem denying auction";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Dashboard';
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionDeleteSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully deleted auction!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Dashboard';
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
 	}
 
 

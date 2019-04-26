@@ -44,6 +44,14 @@
 
         }
 
+        public function getAuctionById($id){
+            $this->db->select("*");
+            $this->db->from("auctions a");
+            $this->db->where("a.auction_id",$id);
+
+            return $this->db->get()->result();
+        }
+
     }
 
 ?>

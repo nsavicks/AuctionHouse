@@ -1,14 +1,14 @@
 <?php
 
 	/**
-	 * 
+	 * Controller class for Dashboard page
 	 */
 	class Dashboard extends CI_Controller{
 
 
 		/**
-		 * Description
-		 * @return type
+		 * Default constructor for Dashboard controller
+		 * @return
 		 */
 		public function __construct(){
 			parent::__construct();
@@ -17,10 +17,10 @@
 
 
 		/**
-		 * Description
-		 * @param type $page 
-		 * @param type|array $content 
-		 * @return type
+		 * Helper function for loading page layout
+		 * @param string $page 
+		 * @param object|array $content 
+		 * @return
 		 */
 		private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "Dashboard";
@@ -33,14 +33,13 @@
         }
 
         /**
-         * Description
-         * @return type
+         * Dashboard index page loader
+         * @return
          */
 		public function index(){
 
 			if ($this->session->has_userdata("user")){
 				$user = $this->session->userdata("user");
-
 				
 				if ($user->user_rank < 1){
 					redirect("InfoMessage/PageNotFound");
@@ -51,6 +50,132 @@
 					$content["all"] = $this->Auction->getAllAuctions();
 
 					$this->loadPageLayout("pages/Dashboard.php", $content);
+
+				} 
+			}
+			else{
+				redirect("InfoMessage/PageNotFound");
+			}
+
+		}
+
+		/**
+		 * Approve auction call function
+		 * @param int $id 
+		 * @return
+		 */
+		public function ApproveAuction($id){
+
+			if ($this->session->has_userdata("user")){
+				$user = $this->session->userdata("user");
+				
+				if ($user->user_rank < 1){
+					redirect("InfoMessage/PageNotFound");
+				}
+				else{
+
+					$auction = $this->Auction->getAuctionById($id);
+
+					if (count($auction) == 1){
+
+						if ($auction[0]->auction_state == "Pending confirmation"){
+
+							$this->db->set("auction_state", "Active");
+							$this->db->where("auction_id", $id);
+							$this->db->update("auctions");
+
+							redirect("InfoMessage/AuctionApproveSuccess");
+
+						}
+						else{
+							redirect("InfoMessage/AuctionApproveFailed");
+						}
+
+					}
+					else{
+						redirect("InfoMessage/AuctionNotFound");
+					}
+
+				} 
+			}
+			else{
+				redirect("InfoMessage/PageNotFound");
+			}
+
+		}
+
+		/**
+		 * Deny auction call function
+		 * @param int $id 
+		 * @return
+		 */
+		public function DenyAuction($id){
+
+			if ($this->session->has_userdata("user")){
+				$user = $this->session->userdata("user");
+				
+				if ($user->user_rank < 1){
+					redirect("InfoMessage/PageNotFound");
+				}
+				else{
+
+					$auction = $this->Auction->getAuctionById($id);
+
+					if (count($auction) == 1){
+
+						if ($auction[0]->auction_state == "Pending confirmation"){
+
+							$this->db->set("auction_state", "Denied");
+							$this->db->where("auction_id", $id);
+							$this->db->update("auctions");
+
+							redirect("InfoMessage/AuctionDenySuccess");
+
+						}
+						else{
+							redirect("InfoMessage/AuctionDenyFailed");
+						}
+
+					}
+					else{
+						redirect("InfoMessage/AuctionNotFound");
+					}
+
+				} 
+			}
+			else{
+				redirect("InfoMessage/PageNotFound");
+			}
+
+		}
+
+		/**
+		 * Delete auction call function
+		 * @param int $id 
+		 * @return
+		 */
+		public function DeleteAuction($id){
+
+			if ($this->session->has_userdata("user")){
+				$user = $this->session->userdata("user");
+				
+				if ($user->user_rank < 1){
+					redirect("InfoMessage/PageNotFound");
+				}
+				else{
+
+					$auction = $this->Auction->getAuctionById($id);
+
+					if (count($auction) == 1){
+
+						$this->db->where("auction_id",$id);
+						$this->db->delete("auctions");
+
+						redirect("InfoMessage/AuctionDeleteSuccess");
+					}
+					else{
+						redirect("InfoMessage/AuctionNotFound");
+					}
 
 				} 
 			}
