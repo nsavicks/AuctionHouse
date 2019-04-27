@@ -34,6 +34,19 @@
             }
         }
 
+        public function createNewAuction($data){
+
+            $this->db->insert("auctions",$data);
+        }
+
+        public function getUsersLastAuctionId($user){
+            $this->db->from("auctions");
+
+            $where = "auction_owner = '" . $user . "' AND auction_id = (SELECT MAX(b.auction_id) FROM auctions b where b.auction_owner = '" . $user . "')"; 
+            $this->db->where($where);
+            return $this->db->get()->result()[0]->auction_id;
+        }
+
     }
 
 ?>
