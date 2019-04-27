@@ -80,7 +80,12 @@
 
 						if ($auction[0]->auction_state == "Pending confirmation"){
 
+							$start = date("Y-m-d H:i:s");
+							$end = date("Y-m-d H:i:s", strtotime($start . ' + ' . $auction[0]->duration . ' days'));	
+
 							$this->db->set("auction_state", "Active");
+							$this->db->set("start_time", $start);
+							$this->db->set("end_time", $end);
 							$this->db->where("auction_id", $id);
 							$this->db->update("auctions");
 
