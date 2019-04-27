@@ -12,10 +12,10 @@
 
         public function getNewestAuctions($limit = null){
             if ($limit != null){
-                return $this->db->order_by("create_time","DESC")->limit($limit)->get("auctions")->result();
+                return $this->db->order_by("create_time","DESC")->limit($limit)->where("auction_state","Active")->get("auctions")->result();
             }
             else{
-                return $this->db->order_by("create_time","DESC")->get("auctions")->result();
+                return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions")->result();
             }
         }
 
@@ -26,11 +26,11 @@
             $this->db->order_by("a.bids_count DESC");
 
             if ($limit != null){
-                return $this->db->limit($limit)->get()->result();
+                return $this->db->limit($limit)->where("auction_state","Active")->get()->result();
             }
             else{
                 
-                return $this->db->get()->result();
+                return $this->db->where("auction_state","Active")->get()->result();
             }
         }
 

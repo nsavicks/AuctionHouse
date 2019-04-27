@@ -1,8 +1,10 @@
 <?php
+
+    $firstpicture = explode(",", $auction->auction_pictures)[0];
     
     echo '
     <div class="auction-preview">
-                <img src="' . $auction->auction_pictures . '" />
+                <img src="' . base_url() . 'UPLOAD/auctions/'. $auction->auction_id . '/' . $firstpicture . '" />
                 <h1>' . $auction->auction_name . '</h1>
                 <p>' . $auction->auction_description . '</p>
                 <div class="auction-preview-meta">
