@@ -54,7 +54,7 @@
 
 		public function PictureUploadFailed(){
 			$content["icon"] = "warning";
-			$content["message"] = "Registration failed: Profile picture upload failed!";
+			$content["message"] = "Error: File upload failed!";
 			$content["buttonText"] = "Go back";
 			$content["buttonLink"] = base_url() . "Register";
 
@@ -99,6 +99,15 @@
 		public function AuctionNotFound(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: The auction you have been looking for has not been found!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionAddedSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully create an auction!";
 			$content["buttonText"] = "Go to Home";
 			$content["buttonLink"] = base_url();
 
