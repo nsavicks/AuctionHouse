@@ -37,24 +37,175 @@
         public function index(){
 
         	if ($this->session->has_userdata("user")){
-				$user = $this->session->userdata("user");
+				// logged in
 
+				$user = $this->session->userdata("user");
 				if ($user->user_rank < 2){
-					redirect("InfoMessage/PageNotFound");
+					// not admin
+				
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
 				}
 				else{
-
-					$content["users"] = $this->User->getAllUsers();
-
-        			$this->loadPageLayout("pages/ManageAccounts",$content);
+					// admin
+				
+					// showing all users except one that is logged in
+					$content["users"] = $this->User->getAllUsersExcept($user->username);
+        			$this->loadPageLayout("pages/ManageAccounts", $content);
 
 				}
 			}
 			else{
-				redirect("InfoMessage/PageNotFound");
+				// not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn/Login/log in");
 			}
 
-        }
+		}
+		
+		public function AddAdministrator($username){
+			if ($this->session->has_userdata("user")){
+				// logged in
+				
+				$user = $this->session->userdata("user");
+				if ($user->user_rank < 2){
+					// not admin
+				
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
+				}
+				else {
+					// admin	
+					
+					$targetUser = $this->User->getUserHavingUsername($username);
+					if ($targetUser[0]->user_rank == 2){
+						// already admin
+				
+						redirect("InfoMessage/BasicInfoMessageCase/UserIsAdmin/ManageAccounts/manage accounts");
+					}
+					else{
+						// setting admin privileges
+				
+						$this->User->addAdmin($username);
+						redirect("InfoMessage/BasicInfoMessageCase/AddAdministratorSuccess/ManageAccounts/manage accounts");
+					}
+				}
+
+			}
+			else {
+				//not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn/Login/log in");
+			}
+		}
+
+		public function AddModerator($username){
+			if ($this->session->has_userdata("user")){
+				// logged in
+
+				$user = $this->session->userdata("user");
+				if ($user->user_rank < 2){
+					// not admin
+				
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
+				}
+				else {
+					// admin
+
+					$targetUser = $this->User->getUserHavingUsername($username);
+					if ($targetUser[0]->user_rank == 2){
+						// already admin
+				
+						redirect("InfoMessage/BasicInfoMessageCase/UserIsAdmin/ManageAccounts/manage accounts");
+					}
+					if ($targetUser[0]->user_rank == 1){
+						// already moderator
+				
+						redirect("InfoMessage/BasicInfoMessageCase/UserIsModerator/ManageAccounts/manage accounts");
+					}
+					else{
+						$this->User->addModerator($username);
+						redirect("InfoMessage/BasicInfoMessageCase/AddModeratorSuccess/ManageAccounts/manage accounts");
+					}
+				}
+
+			}
+			else {
+				// user is not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn");
+			}
+		}
+
+		public function ClearPrivileges($username){
+			if ($this->session->has_userdata("user")){
+				// logged in
+				
+				$user = $this->session->userdata("user");
+				if ($user->user_rank < 2){
+					// not admin
+				
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
+				}
+				else {
+					// admin
+				
+					$this->User->clearPrivileges($username);
+					redirect("InfoMessage/BasicInfoMessageCase/ClearPrivilegesSuccess/ManageAccounts/manage accounts");
+				}
+			}
+			else {
+				// not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn/Login/log in");
+			}
+		}
+
+		public function BanUser($username, $reason = ""){
+			if ($this->session->has_userdata("user")){
+				// logged in
+
+				$user = $this->session->userdata("user");
+				if ($user->user_rank < 2){
+					// not admin
+					
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
+				}
+				else {
+					// admin
+					
+					$this->User->banUser($username, $user->username, $reason);
+					redirect("InfoMessage/BasicInfoMessageCase/BanUserSuccess/ManageAccounts/manage accounts");
+				}
+			}
+			else {
+				// not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn/Login/log in");
+			}
+		}
+
+		public function DeleteUser($username){
+			if ($this->session->has_userdata("user")){
+				// logged in
+
+				$user = $this->session->userdata("user");
+				if ($user->user_rank < 2){
+					// not admin
+					
+					redirect("InfoMessage/BasicInfoMessageCase/NotAdmin");
+				}
+				else {
+					// admin
+					
+					$this->User->deleteUser($username);
+					redirect("InfoMessage/BasicInfoMessageCase/DeleteUserSuccess/ManageAccounts/manage accounts");
+				}
+			}
+			else {
+				// not logged in
+				
+				redirect("InfoMessage/BasicInfoMessageCase/NotLoggedIn/Login/log in");
+			}
+		}
 
 	}
 
