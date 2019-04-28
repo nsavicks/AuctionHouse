@@ -49,7 +49,7 @@
 				$data["email"] = $this->input->post("email");
 				$data["username"] = $this->input->post("username");
 				$data["password"] = password_hash($this->input->post("password"), PASSWORD_DEFAULT);
-				$data["create_time"] = date("Y-m-d H:i:s");;
+				$data["create_time"] = date("Y-m-d H:i:s");
 
 				$checkUsername = $this->User->getUserHavingUsername($data["username"]);
 				$checkEmail = $this->User->getUserHavingEmail($data["email"]);
