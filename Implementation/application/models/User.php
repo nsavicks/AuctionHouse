@@ -44,6 +44,12 @@
 			$this->db->insert("users", $data);
 		}
 
+		public function changePassword($username, $newpassword){
+			$this->db->set('password', $newpassword);
+			$this->db->where('username', $username);
+			$this->db->update('users');
+		}
+
 	}
 	
 ?>
