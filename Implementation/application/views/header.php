@@ -25,7 +25,7 @@
                 echo '<img src="' . $imgPath . '" />';
             }
 
-            echo '<em> Welcome, ' . $user->username  . ' !</em>';
+            echo '<em> Welcome, <b>' . $user->username  . '</b> !</em>';
 
             echo '<ul>';
         
