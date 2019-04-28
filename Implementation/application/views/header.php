@@ -50,7 +50,7 @@
             echo '  
                 <li>
                     <img src="' . asset_url() . 'img/personG.png">
-                    <a href="' . base_url() . 'Profile?username=' . $user->username . '">My Profile</a>
+                    <a href="' . base_url() . 'UserProfile?username=' . $user->username . '">My Profile</a>
                 </li>
             </ul>';
             
