@@ -71,7 +71,7 @@ input[type=search]:focus{
    border-color: #2f5e8e;
 }
 
-button,input[type=submit]{
+button,input[type=submit],input[type=button]{
    padding: 15px;
    background-color: #2f5e8e;
    color: white;
@@ -83,7 +83,7 @@ button,input[type=submit]{
    transition: none;
 }
 
-input[type=submit]:hover{
+input[type=submit]:hover, input[type=button]: hover{
    border-bottom: 3px solid #204163;
    margin-top: 22px;
 }

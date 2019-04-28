@@ -54,7 +54,7 @@
 
 		public function PictureUploadFailed(){
 			$content["icon"] = "warning";
-			$content["message"] = "Registration failed: Profile picture upload failed!";
+			$content["message"] = "Error: File upload failed!";
 			$content["buttonText"] = "Go back";
 			$content["buttonLink"] = base_url() . "Register";
 
@@ -74,7 +74,7 @@
 			$content["icon"] = "check";
 			$content["message"] = "Login successful!";
 			$content["buttonText"] = "My profile";
-			$content["buttonLink"] = base_url() . "Profile?username=" . $this->session->userdata("user")->username;
+			$content["buttonLink"] = base_url() . "UserProfile?username=" . $this->session->userdata("user")->username;
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
@@ -83,6 +83,42 @@
 			$content["message"] = "Login failed: check your username or password and try again.";
 			$content["buttonText"] = "Back";
 			$content["buttonLink"] = base_url() . "Login";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function ChangePasswordSuccessfull(){
+			$content["icon"] = "check";
+			$content["message"] = "Password successfully changed!";
+			$content["buttonText"] = "My profile";
+			$content["buttonLink"] = base_url() . "UserProfile?username=" . $this->session->userdata("user")->username;
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function SamePassword(){
+			$content["icon"] = "warning";
+			$content["message"] = "Old and new passwords are same: please type in new password and try again.";
+			$content["buttonText"] = "Back";
+			$content["buttonLink"] = base_url() . "ChangePassword";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function WrongRepeatPassword(){
+			$content["icon"] = "warning";
+			$content["message"] = "New passwords are not same: please type in correct passwords and try again.";
+			$content["buttonText"] = "Back";
+			$content["buttonLink"] = base_url() . "ChangePassword";
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function WrongPassword(){
+			$content["icon"] = "warning";
+			$content["message"] = "Not valid password: please type in correct password and try again.";
+			$content["buttonText"] = "Back";
+			$content["buttonLink"] = base_url() . "ChangePassword";
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
@@ -99,6 +135,15 @@
 		public function AuctionNotFound(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: The auction you have been looking for has not been found!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
+
+		public function AuctionAddedSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully create an auction!";
 			$content["buttonText"] = "Go to Home";
 			$content["buttonLink"] = base_url();
 

@@ -124,6 +124,11 @@
 			$this->db->set("user_rank", 0);
 			$this->db->where("username", $username);
 			$this->db->update("users");
+
+		public function changePassword($username, $newpassword){
+			$this->db->set('password', $newpassword);
+			$this->db->where('username', $username);
+			$this->db->update('users');
 		}
 
 	}
