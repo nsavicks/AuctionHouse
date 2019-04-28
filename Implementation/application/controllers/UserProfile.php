@@ -55,18 +55,18 @@
 
         }
 
-        public function Rate(){
+        public function Rate($rated_user){
             //$rated_user = $this->input->get("username");
             $rating_user = $this->session->userdata("user")->username;
 
             $data["rating_time"] = date("Y-m-d H:i:s");
             $data["rating"] = $this->input->post("user-rate");
-            $data["rated_user"] = $this->input->post("rated_user");
+            $data["rated_user"] = $rated_user;
             $data["rating_user"] = $rating_user;
 
             $this->User_rating->createNewUserRating($data);
 
-            redirect("UserProfile?username=". $this->input->post("rated_user"));
+            redirect("UserProfile?username=". $rated_user);
 
         }
 
