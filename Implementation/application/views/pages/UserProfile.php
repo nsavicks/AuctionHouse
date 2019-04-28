@@ -66,10 +66,9 @@
                     echo '<div id="user-profile-right-buttons">';
 
                     if($allow_rate){
-                        echo form_open('UserProfile/Rate'); 
+                        echo form_open('UserProfile/Rate/'.$user_info[0]->username); 
                         echo '<div id="user-rate">
                                 <input type="number" name="user-rate" value="1" min="1" max="5">
-                                <input type="hidden" name="rated_user" value="'.$user_info[0]->username.'">
                                 <input type="submit" name="submit-rate" value="Rate!">
                             </div>
                         </form>';
