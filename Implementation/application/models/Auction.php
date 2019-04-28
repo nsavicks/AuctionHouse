@@ -7,7 +7,7 @@
         }
 
         public function getAllAuctions(){
-            return $this->db->get("auctions")->result();
+            return $this->db->get("auctions_info_view")->result();
         }
 
         public function getNewestAuctions($limit = null){
@@ -34,6 +34,24 @@
             }
         }
 
+        public function getPendingAuctions(){
+            $this->db->select("*");
+            $this->db->from("auctions");
+            $this->db->where("auction_state", "Pending confirmation");
+            $this->db->order_by("create_time DESC");
+
+            return $this->db->get()->result();
+
+        }
+
+        public function getAuctionById($id){
+            $this->db->select("*");
+            $this->db->from("auctions a");
+            $this->db->where("a.auction_id",$id);
+
+            return $this->db->get()->result();
+        }
+
         public function createNewAuction($data){
 
             $this->db->insert("auctions",$data);
@@ -44,6 +62,7 @@
 
             $where = "auction_owner = '" . $user . "' AND auction_id = (SELECT MAX(b.auction_id) FROM auctions b where b.auction_owner = '" . $user . "')"; 
             $this->db->where($where);
+
             return $this->db->get()->result()[0]->auction_id;
         }
 
