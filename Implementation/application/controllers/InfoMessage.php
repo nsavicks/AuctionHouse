@@ -298,6 +298,13 @@
 					$content["buttonText"] = "Go to " . $buttonText;
 					$content["buttonLink"] = base_url() . $buttonLinkPage;
 					break;
+
+				case "UserHasActiveAuctions":
+					$content["icon"] = "warning";
+					$content["message"] = "User has active auctions";
+					$content["buttonText"] = "Go to " . $buttonText;
+					$content["buttonLink"] = base_url() . $buttonLinkPage;
+					break;	
 			}
 
 			$this->loadPageLayout("pages/infoMessage", $content);
