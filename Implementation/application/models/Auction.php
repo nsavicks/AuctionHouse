@@ -7,7 +7,11 @@
         }
 
         public function getAllAuctions(){
-            return $this->db->get("auctions_info_view")->result();
+            
+            $this->db->from("auctions_info_view");
+            $this->db->order_by("auction_id DESC");
+
+            return $this->db->get()->result();
         }
 
         public function getNewestAuctions($limit = null){
@@ -64,6 +68,11 @@
             $this->db->where($where);
 
             return $this->db->get()->result()[0]->auction_id;
+        }
+
+        public function deleteAuction($id){
+            $this->db->where("auction_id",$id);
+            $this->db->delete("auctions");
         }
 
     }

@@ -19,6 +19,24 @@
 
         }
 
+        private function filesUploaded() {
+
+		    // bail if there were no upload forms
+		   if(empty($_FILES))
+		        return false;
+
+		    // check for uploaded files
+		    $files = $_FILES['auction-pictures']['tmp_name'];
+		    foreach( $files as $field_title => $temp_name ){
+		        if( !empty($temp_name) && is_uploaded_file( $temp_name )){
+		            // found one!
+		            return true;
+		        }
+		    }   
+		    // return false if no files were found
+		   return false;
+		}
+
 		public function index(){
 
 			if ($this->session->has_userdata("user")){
@@ -49,7 +67,7 @@
 				$data["auction_state"] = "Pending confirmation";
 				$data["auction_pictures"] = "";
 
-				if (!empty($_FILES["auction-pictures"]["name"])){
+				if ($this->filesUploaded()){
 					$data["auction_pictures"] = implode(",",$_FILES["auction-pictures"]["name"]);
 				}
 
@@ -57,8 +75,8 @@
 
 				$id = $this->Auction->getUsersLastAuctionId($data["auction_owner"]);
 
-				if (!empty($_FILES["auction-pictures"]["name"])){
-					
+				if ($this->filesUploaded()){
+
 					$path = "UPLOAD/auctions/" . $id;
 
 					if (!file_exists($path)){
@@ -83,6 +101,7 @@
 
 				        if (!$this->upload->do_upload("auction-pictures")){
 				        	rmdir($path);
+				        	$this->Auction->deleteAuction($id);
 		            		redirect("InfoMessage/PictureUploadFailed");
 				        }
 
