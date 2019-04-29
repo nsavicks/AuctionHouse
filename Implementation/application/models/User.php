@@ -125,11 +125,22 @@
 			$this->db->where("username", $username);
 			$this->db->update("users");
 		}
-		
+
 		public function changePassword($username, $newpassword){
 			$this->db->set('password', $newpassword);
 			$this->db->where('username', $username);
 			$this->db->update('users');
+		}
+
+		public function numberOfActiveAuctions($username){
+			$this->db->from("users u");
+			$this->db->join("auctions a", "a.auction_owner = u.username");
+			$this->db->where("a.auction_state", "Active");
+			$this->db->where("u.username", $username);
+
+			$query = $this->db->get();
+
+			return $query->num_rows();
 		}
 
 	}

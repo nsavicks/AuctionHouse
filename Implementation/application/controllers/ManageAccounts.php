@@ -195,7 +195,9 @@
 				}
 				else {
 					// admin
-					
+					if ($this->User->numberOfActiveAuctions($username) > 0){
+						redirect("InfoMessage/BasicInfoMessageCase/UserHasActiveAuctions/ManageAccounts/manage accounts");
+					}
 					$this->User->deleteUser($username);
 					redirect("InfoMessage/BasicInfoMessageCase/DeleteUserSuccess/ManageAccounts/manage accounts");
 				}
