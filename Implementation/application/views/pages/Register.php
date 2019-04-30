@@ -23,11 +23,11 @@
 
         <label for="state">State</label>
         <select name="state">
-            <option value="serbia">Serbia</option>
-            <option value="montenegro">Montenegro</option>
-            <option value="bih">Bosnia and Herzergovina</option>
-            <option value="croatia">Croatia</option>
-            <option value="other">Other</option>
+            <option value="Serbia">Serbia</option>
+            <option value="Montenegro">Montenegro</option>
+            <option value="Bosnia and Herzergovina">Bosnia and Herzergovina</option>
+            <option value="Croatia">Croatia</option>
+            <option value="Other">Other</option>
         </select>
 
         <label for="telephone">Telephone</label>

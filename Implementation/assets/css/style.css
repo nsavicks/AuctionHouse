@@ -83,7 +83,7 @@ button,input[type=submit],input[type=button]{
    transition: none;
 }
 
-input[type=submit]:hover, input[type=button]: hover{
+input[type=submit]:hover, input[type=button]:hover{
    border-bottom: 3px solid #204163;
    margin-top: 22px;
 }
