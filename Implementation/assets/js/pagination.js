@@ -9,13 +9,19 @@
 
         switch(id){
             case "pending":
-                columns = new Array("Auction ID", "Name", "Owner", "Create time");
+                columns = new Array("Auction ID", "Name", "Owner", "Create Time");
             break;
             case "all":
-                columns = new Array("Auction ID", "Name", "Owner", "End time", "Highest bid", "Status");
+                columns = new Array("Auction ID", "Name", "Owner", "End Time", "Highest Bid", "Status");
             break;
             case "users":
                 columns = new Array("Username", "First Name", "Last Name", "Registration Date", "Title");
+            break;
+            case "bids":
+                columns = new Array("Bid ID", "Auction ID", "Name", "End Time", "Status", "My Bid");
+            break;
+            case "owned":
+                columns = new Array("Auction ID", "Name", "End Time", "Status", "Highest Bid");
             break;
         }
 
@@ -27,34 +33,34 @@
             tr.appendChild(th);
         }
 
-        var th = document.createElement("th");
-        th.setAttribute("colspan","2");
-        th.innerHTML = "Command";
-        tr.appendChild(th);
+        if (id != "bids" && id != "owned"){
+            var th = document.createElement("th");
+            th.setAttribute("colspan","2");
+            th.innerHTML = "Command";
+            tr.appendChild(th);
+        }
 
         table.appendChild(tr);
-
-
 
         var start = (currentPage[id] - 1) * 5;
 
         for (i = start; i<Math.min(data[id].length, start + 5); i++){
 
-            if (id == "pending" || id == "all"){
-                var tr = document.createElement("tr");
-                var td = document.createElement("td");
-                td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
-                tr.appendChild(td);
+            switch(id){
+                case "pending":
+                {
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    tr.appendChild(td);
 
-                var td = document.createElement("td");
-                td.innerHTML = data[id][i].auction_name;
-                tr.appendChild(td);
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_name;
+                    tr.appendChild(td);
 
-                var td = document.createElement("td");
-                td.innerHTML = '<a href="' + base_url + 'UserProfile?username=' + data[id][i].auction_owner + '">' + data[id][i].auction_owner + '</a>';
-                tr.appendChild(td);
-
-                if (id == "pending"){
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'UserProfile?username=' + data[id][i].auction_owner + '">' + data[id][i].auction_owner + '</a>';
+                    tr.appendChild(td);
 
                     var td = document.createElement("td");
                     td.innerHTML = data[id][i].create_time;
@@ -63,9 +69,23 @@
                     var td = document.createElement("td");
                     td.innerHTML = '<a href="' + base_url + 'Dashboard/ApproveAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/checkG.png"></a> <a href="' + base_url + 'Dashboard/DenyAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/blockR.png"></a></td>';
                     tr.appendChild(td);
-
                 }
-                else{
+                break;
+
+                case "all":
+                {
+                    var tr = document.createElement("tr");
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_name;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'UserProfile?username=' + data[id][i].auction_owner + '">' + data[id][i].auction_owner + '</a>';
+                    tr.appendChild(td);
 
                     var td = document.createElement("td");
                     td.innerHTML = data[id][i].end_time;
@@ -82,46 +102,105 @@
                     var td = document.createElement("td");
                     td.innerHTML = '<a href="' + base_url + 'Dashboard/DeleteAuction/' + data[id][i].auction_id + '"><img src="' + asset_url + 'img/remove.png"></a></td>';
                     tr.appendChild(td);
+                }
+                break;
+
+                case "users":
+                {
+                    var tr = document.createElement("tr");
+
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'UserProfile?username=' + data[id][i].username + '">' + data[id][i].username + '</a>';
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].first_name;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].last_name;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].create_time;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].rank_title;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = `
+                            <a href="` + base_url + `ManageAccounts/AddAdministrator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-administrator.png"></a>
+                            <a href="` + base_url + `ManageAccounts/AddModerator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-moderator.png"></a>
+                            <a href="` + base_url + `ManageAccounts/ClearPrivileges/` + data[id][i].username + `"><img src="` + asset_url + `img/clear-privileges.png"></a>
+                            <a href="` + base_url + `ManageAccounts/BanUser/` + data[id][i].username + `"><img src="` + asset_url + `img/blockR.png"></a>
+                            <a href="` + base_url + `ManageAccounts/DeleteUser/` + data[id][i].username + `"><img src="` + asset_url + `img/remove.png"></a>
+                    `;
+                    tr.appendChild(td);
+                }
+                break;
+                
+                case "bids":
+                {
+                    var tr = document.createElement("tr");
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].bid_id;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_name;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].end_time;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_state;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].bid_value;
+                    tr.appendChild(td);
 
                 }
+                break;
+                
+                case "owned":
+                {
+
+                    var tr = document.createElement("tr");
+
+                    var td = document.createElement("td");
+                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_name;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].end_time;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].auction_state;
+                    tr.appendChild(td);
+
+                    var td = document.createElement("td");
+                    td.innerHTML = data[id][i].max_bid;
+                    tr.appendChild(td);
+
+                }
+                break;
             }
-            else{
-                // users
-
-                var tr = document.createElement("tr");
-
-                var td = document.createElement("td");
-                td.innerHTML = '<a href="' + base_url + 'UserProfile?username=' + data[id][i].username + '">' + data[id][i].username + '</a>';
-                tr.appendChild(td);
-
-                var td = document.createElement("td");
-                td.innerHTML = data[id][i].first_name;
-                tr.appendChild(td);
-
-                var td = document.createElement("td");
-                td.innerHTML = data[id][i].last_name;
-                tr.appendChild(td);
-
-                var td = document.createElement("td");
-                td.innerHTML = data[id][i].create_time;
-                tr.appendChild(td);
-
-                var td = document.createElement("td");
-                td.innerHTML = data[id][i].rank_title;
-                tr.appendChild(td);
-
-                var td = document.createElement("td");
-                td.innerHTML = `
-                        <a href="` + base_url + `ManageAccounts/AddAdministrator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-administrator.png"></a>
-                        <a href="` + base_url + `ManageAccounts/AddModerator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-moderator.png"></a>
-                        <a href="` + base_url + `ManageAccounts/ClearPrivileges/` + data[id][i].username + `"><img src="` + asset_url + `img/clear-privileges.png"></a>
-                        <a href="` + base_url + `ManageAccounts/BanUser/` + data[id][i].username + `"><img src="` + asset_url + `img/blockR.png"></a>
-                        <a href="` + base_url + `ManageAccounts/DeleteUser/` + data[id][i].username + `"><img src="` + asset_url + `img/remove.png"></a>
-                `;
-                tr.appendChild(td);
-            }
-
-            
+            // END OF SWITCH
 
             table.appendChild(tr);
         }
@@ -163,7 +242,7 @@
 
         for (var i = 0; i < globalData[id].length; i++){
 
-            if (id == "pending" || id == "all"){
+            if (id == "pending" || id == "all" || id == "owned" || id == "bids"){
 
                 if (regex.test(globalData[id][i].auction_id.toUpperCase()) || regex.test(globalData[id][i].auction_name.toUpperCase())){
                     newData[id].push(globalData[id][i]);

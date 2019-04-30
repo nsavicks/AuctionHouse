@@ -75,6 +75,14 @@
             $this->db->delete("auctions");
         }
 
+        public function getAuctionsCreatedByUser($username){
+            $this->db->from("auctions_info_view");
+            $this->db->where("auction_owner", $username);
+            $this->db->order_by("auction_id DESC");
+
+            return $this->db->get()->result();
+        }
+
     }
 
 ?>

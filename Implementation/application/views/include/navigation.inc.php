@@ -28,10 +28,10 @@
         }
 
         if ($controller == "MyAuctions"){
-            echo '<li class="page-active"><a href="' . base_url() . 'MyAuctions">My Auctions</a></li>';
+            echo '<li class="page-active"><a href="' . base_url() . 'MyAuctions">My Bids / My Auctions</a></li>';
         }
         else{
-            echo '<li><a href="' . base_url() . 'MyAuctions">My Auctions</a></li>';
+            echo '<li><a href="' . base_url() . 'MyAuctions">My Bids / My Auctions</a></li>';
         }
 
     }
