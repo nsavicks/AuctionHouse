@@ -23,7 +23,7 @@
                         <em>' . $auction->starting_price . ' rsd.</em>
                     </div>
                 </div>
-                <a href="/SingleAuction?id=' . $auction->auction_id . '">
+                <a href="' . base_url() . 'SingleAuction?id=' . $auction->auction_id . '">
                     <div class="auction-preview-goto">
                         <img src="'. asset_url() . 'img/arrow.png">
                     </div>
