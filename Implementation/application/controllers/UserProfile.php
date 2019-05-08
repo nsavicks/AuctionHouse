@@ -9,6 +9,11 @@
             $this->load->model("User_rank");
             $this->load->model("User_rating");
             $this->load->model("Ratings_by_user_view");
+
+            if (! $this->session->has_userdata("user")){
+
+                redirect("InfoMessage/PageNotFound");
+            }
         }
 
         private function loadPageLayout($page, $content=[]){
