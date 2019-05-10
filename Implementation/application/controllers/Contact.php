@@ -45,15 +45,8 @@ class Contact extends CI_Controller{
           $lname = $this->input->post("lname");
           $email = $this->input->post("email");
           $message = $this->input->post("message");
-     /*   $to = $email;
-        $subject = "Contact message";
-        $txt = "Hello world!";
-        $headers = "From: aleksandarpantic98@gmail.com" . "\r\n" .
-        "CC: aleksandarpantic98@gmail.com";
-
-        mail("aleksandarpantic98si@gmail.com",$subject,$message,$headers);
-      
-         redirect("InfoMessage/SendingMailSuccessful");*/         
+    
+                
          // PHPMailer classes into the global namespace
         // Base files 
         
@@ -62,22 +55,33 @@ class Contact extends CI_Controller{
         //require asset_url().'lib/PHPMailer/src/SMTP.php';
         // create object of PHPMailer class with boolean parameter which sets/unsets exception.
         $mail = new PHPMailer(true);                              
-        try {
+        try { 
             $mail->isSMTP(); // using SMTP protocol                                     
-            $mail->Host = 'smtp.sendgrid.net'; // SMTP host as gmail 
+            $mail->Host = 'smtp.gmail.com'; // SMTP host as gmail 
+            $mail->SMTPDebug=4;// in production this should be forbiden
             $mail->SMTPAuth = true;  // enable smtp authentication                             
-            $mail->Username = 'smtp.sendgrid.net.com';  // sender gmail host              
-            $mail->Password = '&!P@Pz`5-a+X^8:B'; // sender gmail host password                          
-            $mail->SMTPSecure = 'tls';  // for encrypted connection                           
-            $mail->Port = 587;   // port for SMTP     
-
+            $mail->Username = 'aleksandarpantic98@gmail.com';  // sender gmail host              
+            $mail->Password = 'sifra mejla'; // sender gmail host password                          
+            $mail->SMTPSecure = 'ssl';  // for encrypted connection                           
+            $mail->Port = 465;   // port for SMTP     
+            $mail->SMTPKeepAlive = true;  
+             $mail->Mailer = "smtp"; 
+           /* $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_p'
+                    . 'eer_name' => false,
+                    'allow_self_signed' => true
+                    )
+                );*/
             $mail->setFrom('aleksandarpantic98@gmail.com', "Sender"); // sender's email and name
-            $mail->addAddress('aleksandarpantic98si@gmail.com', "Receiver");  // receiver's email and name
+            $mail->addAddress('aleksandarpantic98@gmail.com', "Receiver");  // receiver's email and name
 
             $mail->Subject = 'Test subject';
             $mail->Body    = 'Test body';
 
             $mail->send(); echo 'Message has been sent';
+              redirect("InfoMessage/SendingMailSuccessful");
         } catch (Exception $e) { 
            echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
         }
