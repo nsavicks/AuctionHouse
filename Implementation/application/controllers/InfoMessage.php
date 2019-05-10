@@ -131,7 +131,14 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
+                public function SendingMailSuccessful(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully sent us mail!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
 
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
 		public function AuctionNotFound(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: The auction you have been looking for has not been found!";
