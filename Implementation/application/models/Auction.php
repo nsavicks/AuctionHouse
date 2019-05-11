@@ -6,6 +6,11 @@
             parent::__construct();
         }
 
+        public function getMaxBid($auction_id){
+            $this->db->where('auction_id', $auction_id);
+            return $this->db->get('max_bids_view')->row();
+        }
+
         public function getAllAuctions(){
             
             $this->db->from("auctions_info_view");
