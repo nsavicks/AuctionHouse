@@ -24,12 +24,14 @@
             $id = $this->input->get("id");
             
             $auction = $this->Auction->getAuctionById($id)[0];
+            $bid = $this->Auction->getMaxBid($id);
 
             if($auction == null){
                 redirect("InfoMessage/PageNotFound");
             }
 
             $content["auction"] = $auction;
+            $content["bid"] = $bid;
             $this->loadPageLayout("pages/SingleAuction.php", $content);
 
         }
