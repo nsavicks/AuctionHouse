@@ -10,10 +10,6 @@
             $this->load->model("User_rating");
             $this->load->model("Ratings_by_user_view");
 
-            if (! $this->session->has_userdata("user")){
-
-                redirect("InfoMessage/PageNotFound");
-            }
         }
 
         private function loadPageLayout($page, $content=[]){
@@ -36,7 +32,14 @@
             else{
                 //dohvatim username iz urla
                 $username = $this->input->get("username");
-                $content["user_info"] = $this->User->getUserHavingUsername($username);
+
+                $user_info = $this->User->getUserHavingUsername($username);
+
+                if($user_info == null){
+                    redirect("InfoMessage/PageNotFound");
+                }
+
+                $content["user_info"] = $user_info;
 
                 $user_rank_id = $content["user_info"][0]->user_rank;
                 $content["user_rank_id"] = $this->User_rank->getUserRankHavingId($user_rank_id);
@@ -61,6 +64,11 @@
         }
 
         public function Rate($rated_user){
+            if (! $this->session->has_userdata("user")){
+
+                redirect("InfoMessage/PageNotFound");
+            }
+            
             //$rated_user = $this->input->get("username");
             $rating_user = $this->session->userdata("user")->username;
 
