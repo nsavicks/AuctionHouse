@@ -1,28 +1,45 @@
+
 <div id="single-auction-page-content" onload="showSlides(1)">
         <div id="single-auction-left">
             <div id="single-auction-title">
                 <h1><?php echo $auction->auction_name ?></h1>
                 <div id="single-auction-price">
                     <img <?php echo 'src="' . asset_url() . 'img/money-icon.png"'?>>
-                    <p>3200 rsd.</p>
+                    <p><?php 
+                        if($bid != null)
+                            echo $bid->bid_value ;
+                        else 
+                            echo '/';?>
+                        rsd.
+                    </p>
                 </div>
             </div>
 
             <div class="slideshow-container">
-                <div class="mySlides">
-                    <img src="MEDIA/lamb1.jpg" style="width: 100%">
-                </div>
-                <div class="mySlides">
-                    <img src="MEDIA/lamb2.jpg" style="width: 100%">
-                </div>
-                <div class="mySlides">
-                    <img src="MEDIA/lamb3.jpg" style="width: 100%">
-                </div>
+                <?php
+                    $pictures = explode(",", $auction->auction_pictures);
+
+                    if(count($pictures) == 1){
+                        echo '<div class="mySlides">
+                                <img src="'. base_url() .'assets/img/no-image.png'.'" style="width: 100%">
+                            </div>';
+                    }
+                    else{
+                        foreach ($pictures as $picture) {
+                            echo '
+                                <div class="mySlides">
+                                    <img src="' . base_url() . 'UPLOAD/auctions/'. $auction->auction_id .'/'.
+                                    $picture.'" style="width: 100%">
+                                </div>
+                            ';
+                        }
+                    }  
+                ?>
     
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-
+            <script src="assets/js/slider.js"></script>
             <div id="single-auction-description">
                 <div class="auctions-preview-title">
                     <div class="auctions-preview-title-left">
@@ -80,15 +97,30 @@
                 </div>
                 <div class="item-detail">
                     <p class="description">Highest bid:</p>
-                    <p class="value"><a href="#">nsavic</a></p>
+                    <p class="value"><a href="<?php echo base_url() . 'UserProfile?username=' . $auction->auction_owner; ?>"><?php echo $auction->auction_owner; ?></a></p>
                 </div>
                 <div class="item-detail">
                     <p class="description">Current price:</p>
-                    <p class="value">3200 rsd.</p>
+                    <p class="value">
+                        <?php 
+                        if($bid != null)
+                            echo $bid->bid_value ;
+                        else 
+                            echo '/';?>
+                        rsd.
+                    </p>
                 </div>
             </div>
             <div id="auction-bid">
-                <input type="number" name="bid" min="3201" value="3201">
+                <?php 
+                    if($bid != null)
+                        echo '<input type="number" name="bid" min="'.($bid->bid_value + 1).'" value="'.
+                        ($bid->bid_value + 1) .'">';
+                    else 
+                        echo '<input type="number" name="bid" min="'.($auction->starting_price + 1).'" value="'.
+                        ($auction->starting_price + 1) .'">';
+                ?>
+
                 <p>rsd.</p>
             </div>
             <input type="submit" name="submit-bid" value="Bid"> 
