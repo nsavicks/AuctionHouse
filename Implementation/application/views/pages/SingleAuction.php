@@ -21,7 +21,7 @@
 
                     if(count($pictures) == 1){
                         echo '<div class="mySlides">
-                                <img src="'. base_url() .'assets/img/no-image.png'.'" style="width: 100%">
+                                <img src="'. base_url() .'assets/img/no-image.png'.'" style="width: 100%; height:550px">
                             </div>';
                     }
                     else{
@@ -29,7 +29,7 @@
                             echo '
                                 <div class="mySlides">
                                     <img src="' . base_url() . 'UPLOAD/auctions/'. $auction->auction_id .'/'.
-                                    $picture.'" style="width: 100%">
+                                    $picture.'" style="width: 100%; max-height:400px">
                                 </div>
                             ';
                         }
@@ -74,18 +74,22 @@
                         $time = strtotime($auction->start_time);
                     ?>
                     <p class="description">Starts:</p>
-                    <p class="value"><?php echo date("d-m-Y h:m", $time); ?></p>
+                    <p class="value"><?php echo date("d-m-Y h:i:s", $time); ?></p>
                 </div>
                 <div class="item-detail">
                     <?php 
                         $time = strtotime($auction->start_time);
                     ?>
                     <p class="description">Ends:</p>
-                    <p class="value"><?php echo date("d-m-Y h:m", $time); ?></p>
+                    <p class="value"><?php echo date("d-m-Y h:i:s", $time); ?></p>
                 </div>
                 <div class="item-detail">
                     <p class="description">Category:</p>
                     <p class="value">Cars</p>
+                </div>
+                <div class="item-detail">
+                    <p class="description">Auction owner:</p>
+                    <p class="value"><a href="<?php echo base_url() . 'UserProfile?username=' . $auction->auction_owner; ?>"><?php echo $auction->auction_owner; ?></a></p>
                 </div>
                 <div class="item-detail">
                     <p class="description">Starting price:</p>
@@ -95,9 +99,23 @@
                     <p class="description">Condition:</p>
                     <p class="value"><?php echo $auction->item_condition; ?></p>
                 </div>
+
+                <div class="item-detail">
+                    <p class="description">State:</p>
+                    <p class="value"><?php echo $auction->auction_state; ?></p>
+                </div>
+
                 <div class="item-detail">
                     <p class="description">Highest bid:</p>
-                    <p class="value"><a href="<?php echo base_url() . 'UserProfile?username=' . $auction->auction_owner; ?>"><?php echo $auction->auction_owner; ?></a></p>
+                    <?php
+                        if($bid != null){
+                            echo '<p class="value"><a href="'.base_url() . 'UserProfile?username=' . $bid->username.'">'.$bid->username.'</a></p>';
+                        }
+                        else{
+                             echo '<p class="value">/</p>';
+                        }
+                    ?>
+                    
                 </div>
                 <div class="item-detail">
                     <p class="description">Current price:</p>
@@ -111,18 +129,33 @@
                     </p>
                 </div>
             </div>
-            <div id="auction-bid">
-                <?php 
-                    if($bid != null)
-                        echo '<input type="number" name="bid" min="'.($bid->bid_value + 1).'" value="'.
-                        ($bid->bid_value + 1) .'">';
-                    else 
-                        echo '<input type="number" name="bid" min="'.($auction->starting_price + 1).'" value="'.
-                        ($auction->starting_price + 1) .'">';
-                ?>
 
-                <p>rsd.</p>
-            </div>
-            <input type="submit" name="submit-bid" value="Bid"> 
+            <?php
+                $logged_user = $this->session->userdata("user");
+                if($logged_user != null && $auction->auction_state == 'Active' && $logged_user->username != $auction->auction_owner){
+                    echo form_open('SingleAuction/Bid?id=' . $auction->auction_id);
+                        echo '<div id="auction-bid">';
+
+                        $old_value = $auction->starting_price;
+                        if($bid != null)
+                            $old_value = $bid->bid_value;
+
+                        if($bid != null)
+                            echo '<input type="number" name="bid" min="'.($bid->bid_value + 1).'" value="'.
+                            ($bid->bid_value + 1) .'">';
+                        else 
+                            echo '<input type="number" name="bid" min="'.($auction->starting_price + 1).'" value="'.
+                            ($auction->starting_price + 1) .'">';
+
+                        echo '<p>rsd.</p>';
+
+                        echo '<input type="hidden" name="old_bid_value" value="'.$old_value.'">';
+
+                        echo '</div>';
+                        echo '<input type="submit" name="submit-bid" value="Bid">';
+                    echo '</form>';
+                }
+            ?>
+
         </div>       
 </div>
