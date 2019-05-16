@@ -20,6 +20,7 @@
 
 .mySlides img{
     height: 400px;
+    max-height: 400px;
 }
 
 /* Next & previous buttons */
