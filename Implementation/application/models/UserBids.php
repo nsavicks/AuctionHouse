@@ -16,6 +16,17 @@
 			return $this->db->get()->result();
 		}
 
+		public function createBid($auction_id, $username, $bid_time, $bid_value){
+			$data = array(
+				'auction_id' => $auction_id,
+				'username' => $username,
+				'bid_time' => $bid_time,
+				'bid_value' => $bid_value  
+			);
+
+			$this->db->insert('bids', $data); 
+		}
+
 	}
 
 ?>
