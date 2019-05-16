@@ -75,11 +75,6 @@
                     }
 
                     if($allow_change_password){
-                        /*echo '<div id="user-profile-change-password">
-                                <button name="user-profile-changepw" 
-                                    onclick="'.base_url().'ChangePassword/index">Change password
-                                </button>
-                            </div>';*/
 
                         echo form_open('ChangePassword');
                         echo '<div id="user-profile-change-password">
