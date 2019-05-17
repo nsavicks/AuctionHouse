@@ -28,6 +28,12 @@
             }
         }
 
+        public function finishAuction($id){
+            $this->db->set('auction_state', 'Finished');
+            $this->db->where('auction_id', $id);
+            $this->db->update('auctions');
+        }
+
         public function getFeaturedAuctions($limit = null){
 
             $this->db->select("*");

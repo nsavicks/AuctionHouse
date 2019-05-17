@@ -23,12 +23,19 @@
 
             }
 
+            if($auction->auction_state == 'Active' || $auction->auction_state == 'Pending confirmation'){
+                $cur_time = date("Y-m-d H:i:s");
+
+                if(strtotime($auction->end_time) < strtotime($cur_time)){
+                    $this->Auction->finishAuction($id);
+                }
+            }
+
         }
 
         private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "SingleAuction";
             $header_content["page_title"] = "Auction Item";
-            //ovde treba da se postavi ono lice
             $header_content["page_icon"] = "money";
 
             $this->load->view("header.php", $header_content);
@@ -69,15 +76,9 @@
             $this->UserBids->createBid($auction->auction_id, $logged_user, $bid_time, $new_bid);
             
             redirect(base_url() .'InfoMessage/BidSuccessful?id=' . $auction->auction_id);
-            //redirect(base_url() . 'SingleAuction?id=' . $auction->auction_id);
-
-            //$content["auction"] = $auction;
-            //$content["bid"] = $bid;
-            //$this->loadPageLayout("pages/SingleAuction.php", $content);
 
         }
-
-        
+ 
 
     }
 
