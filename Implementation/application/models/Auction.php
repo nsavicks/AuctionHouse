@@ -6,6 +6,11 @@
             parent::__construct();
         }
 
+        public function getMaxBid($auction_id){
+            $this->db->where('auction_id', $auction_id);
+            return $this->db->get('max_bids_view')->row();
+        }
+
         public function getAllAuctions(){
             
             $this->db->from("auctions_info_view");
@@ -21,6 +26,12 @@
             else{
                 return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions")->result();
             }
+        }
+
+        public function finishAuction($id){
+            $this->db->set('auction_state', 'Finished');
+            $this->db->where('auction_id', $id);
+            $this->db->update('auctions');
         }
 
         public function getFeaturedAuctions($limit = null){

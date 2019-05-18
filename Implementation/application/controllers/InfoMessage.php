@@ -34,6 +34,30 @@
 
 		}
 
+		public function AuctionChanged(){
+			$id = $this->input->get("id");
+
+			$content["icon"] = "warning";
+			$content["message"] = "Someone has bidded in the meantime!";
+			$content["buttonText"] = "Try again";
+			$content["buttonLink"] = base_url() . 'SingleAuction?id=' . $id;
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+
+		}
+
+		public function BidSuccessful(){
+			$id = $this->input->get("id");
+
+			$content["icon"] = "check";
+			$content["message"] = "Bid was successful!";
+			$content["buttonText"] = "View auction";
+			$content["buttonLink"] = base_url() . 'SingleAuction?id=' . $id;
+
+			$this->loadPageLayout("pages/InfoMessage", $content);
+
+		}
+
 		public function RegistrationFailedBadUsername(){
 			$content["icon"] = "warning";
 			$content["message"] = "Registration failed: User with given username already exist!";
