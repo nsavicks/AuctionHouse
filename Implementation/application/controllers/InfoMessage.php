@@ -38,7 +38,7 @@
 			$id = $this->input->get("id");
 
 			$content["icon"] = "warning";
-			$content["message"] = "Auction has been changed in meantime!";
+			$content["message"] = "Someone has bidded in the meantime!";
 			$content["buttonText"] = "Try again";
 			$content["buttonLink"] = base_url() . 'SingleAuction?id=' . $id;
 
