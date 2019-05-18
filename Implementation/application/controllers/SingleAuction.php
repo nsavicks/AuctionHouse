@@ -1,38 +1,49 @@
 <?php
-
+    /**
+     * this is controller for showing single auction
+     */
     class SingleAuction extends CI_Controller{
 
+        // auction that is getted in constructor
+        private $auction = null;
+            
         public function __construct(){
+
             parent::__construct();
 
             $this->load->model('Auction');
             $this->load->model('UserBids');
 
+            // getting auction with corresponding id
             $id = $this->input->get("id");
-            $auction = $this->Auction->getAuctionById($id)[0];
+            $this->auction = $this->Auction->getAuctionById($id)[0];
 
-            if($auction == null){
+            if($this->auction == null){
                 redirect("InfoMessage/PageNotFound");
             }
 
             $logged_user = $this->session->userdata("user");
 
+            // user doesn't have access to this auction
             if($logged_user == null || $logged_user->user_rank == 0){
-                if($auction->auction_state == 'Denied' || $auction->auction_state == 'Pending confirmation')
+                if($this->auction->auction_state == 'Denied' || $this->auction->auction_state == 'Pending confirmation')
                     redirect("InfoMessage/PageNotFound");
 
             }
 
-            if($auction->auction_state == 'Active' || $auction->auction_state == 'Pending confirmation'){
+            if($this->auction->auction_state == 'Active' || $this->auction->auction_state == 'Pending confirmation'){
                 $cur_time = date("Y-m-d H:i:s");
 
-                if(strtotime($auction->end_time) < strtotime($cur_time)){
+                if(strtotime($this->auction->end_time) < strtotime($cur_time)){
                     $this->Auction->finishAuction($id);
                 }
             }
 
         }
 
+        /**
+         * loading page layout, same as in every other controller
+         */
         private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "SingleAuction";
             $header_content["page_title"] = "Auction Item";
@@ -43,18 +54,22 @@
             $this->load->view("footer.php");
         }
 
+        /**
+         * default index page
+         */
         public function index(){
-            $id = $this->input->get("id");
-            
-            $auction = $this->Auction->getAuctionById($id)[0];
-            $bid = $this->Auction->getMaxBid($id);
+            $bid = $this->Auction->getMaxBid($this->auction->auction_id);
 
-            $content["auction"] = $auction;
+            $content["auction"] = $this->auction;
             $content["bid"] = $bid;
             $this->loadPageLayout("pages/SingleAuction.php", $content);
 
         }
 
+        /**
+         * Controller for auction bidding
+         * if someone bidded in the meantime this function will deny new bid and notify user that someone has bidded in the meantime
+         */
         public function Bid(){
             $old_value = $this->input->post("old_bid_value");
             $new_bid = $this->input->post("bid");
@@ -62,20 +77,18 @@
             if($old_value == null)
                 redirect("InfoMessage/PageNotFound");
 
-            $id = $this->input->get("id");
-            $auction = $this->Auction->getAuctionById($id)[0];
-            $bid = $this->Auction->getMaxBid($id);
+            $bid = $this->Auction->getMaxBid($this->auction->auction_id);
 
-            if($bid->bid_value != $old_value){
-                redirect(base_url() .'InfoMessage/AuctionChanged?id=' . $auction->auction_id);
+            if($bid != null && $bid->bid_value != $old_value){
+                redirect(base_url() .'InfoMessage/AuctionChanged?id=' . $this->auction->auction_id);
             }
 
             $bid_time = date("Y-m-d H:i:s");
             $logged_user = $this->session->userdata("user")->username;
 
-            $this->UserBids->createBid($auction->auction_id, $logged_user, $bid_time, $new_bid);
+            $this->UserBids->createBid($this->auction->auction_id, $logged_user, $bid_time, $new_bid);
             
-            redirect(base_url() .'InfoMessage/BidSuccessful?id=' . $auction->auction_id);
+            redirect(base_url() .'InfoMessage/BidSuccessful?id=' . $this->auction->auction_id);
 
         }
  
