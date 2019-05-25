@@ -9,9 +9,9 @@
 		}
 
 		private function loadPageLayout($page, $content=[]){
-            $header_content["controller"] = "Register";
-            $header_content["page_title"] = "Register";
-            $header_content["page_icon"] = "register";
+            $header_content["controller"] = "NewAuction";
+            $header_content["page_title"] = "New Auction";
+            $header_content["page_icon"] = "new-auction";
 
             $this->load->view("header.php", $header_content);
             $this->load->view($page, $content);
