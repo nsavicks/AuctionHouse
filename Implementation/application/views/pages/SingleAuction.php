@@ -17,8 +17,7 @@
 
             <div class="slideshow-container">
                 <?php
-
-                    if($auction->auction_pictures == ""){
+                if($auction->auction_pictures == ""){
                         echo '<div class="mySlides">
                                 <img src="'. base_url() .'assets/img/no-image.png'.'" style="width: 100%; height:550px">
                             </div>';
