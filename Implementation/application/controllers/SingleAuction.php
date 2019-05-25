@@ -30,15 +30,6 @@
                     redirect("InfoMessage/PageNotFound");
 
             }
-
-            if($this->auction->auction_state == 'Active'){
-                $cur_time = date("Y-m-d H:i:s");
-
-                if(strtotime($this->auction->end_time) < strtotime($cur_time)){
-                    $this->Auction->finishAuction($id);
-                }
-            }
-
         }
 
         /**

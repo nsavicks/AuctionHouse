@@ -4,6 +4,9 @@
 
         public function __construct(){
             parent::__construct();
+
+            $this->checkAndFinishAll();
+
         }
 
         public function getMaxBid($auction_id){
@@ -26,12 +29,6 @@
             else{
                 return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions_info_view")->result();
             }
-        }
-
-        public function finishAuction($id){
-            $this->db->set('auction_state', 'Finished');
-            $this->db->where('auction_id', $id);
-            $this->db->update('auctions');
         }
 
         public function getFeaturedAuctions($limit = null){
@@ -92,6 +89,43 @@
             $this->db->order_by("auction_id DESC");
 
             return $this->db->get()->result();
+        }
+
+        /**
+         * this is function that will be called every time when constructor of this model is being executed
+         */
+        private function checkAndFinishAll(){
+            $this->db->from("auctions");
+            $auctions = $this->db->get()->result();
+            
+            foreach ($auctions as $auction){
+                $this->checkAndFinishSingle($auction);
+            }
+
+
+        }
+
+        /**
+         * this is function for checking if a single auction that is passed as parameter is finished
+         * this checks only for auctions that are in active state
+         */
+        public function checkAndFinishSingle($auction){
+            if ($auction->auction_state == 'Active'){
+                $cur_time = date("Y-m-d H:i:s");
+                if(strtotime($auction->end_time) < strtotime($cur_time)){        
+                    $this->finishAuction($auction->auction_id);
+                }
+            }
+
+        }
+
+        /**
+         * setting auction state to "Finished"
+         */
+        public function finishAuction($id){
+            $this->db->set('auction_state', 'Finished');
+            $this->db->where('auction_id', $id);
+            $this->db->update('auctions');
         }
 
     }
