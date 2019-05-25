@@ -71,25 +71,30 @@
          * if someone bidded in the meantime this function will deny new bid and notify user that someone has bidded in the meantime
          */
         public function Bid(){
-            $old_value = $this->input->post("old_bid_value");
-            $new_bid = $this->input->post("bid");
 
-            if($old_value == null)
-                redirect("InfoMessage/PageNotFound");
-
-            $bid = $this->Auction->getMaxBid($this->auction->auction_id);
-
-            if($bid != null && $bid->bid_value != $old_value){
-                redirect(base_url() .'InfoMessage/AuctionChanged?id=' . $this->auction->auction_id);
+            if ($this->auction->auction_state != 'Active'){
+                redirect(base_url() . 'InfoMessage/AuctionNotActive');
             }
+            else {
+                $old_value = $this->input->post("old_bid_value");
+                $new_bid = $this->input->post("bid");
 
-            $bid_time = date("Y-m-d H:i:s");
-            $logged_user = $this->session->userdata("user")->username;
+                if($old_value == null)
+                    redirect("InfoMessage/PageNotFound");
 
-            $this->UserBids->createBid($this->auction->auction_id, $logged_user, $bid_time, $new_bid);
-            
-            redirect(base_url() .'InfoMessage/BidSuccessful?id=' . $this->auction->auction_id);
+                $bid = $this->Auction->getMaxBid($this->auction->auction_id);
 
+                if($bid != null && $bid->bid_value != $old_value){
+                    redirect(base_url() .'InfoMessage/AuctionChanged?id=' . $this->auction->auction_id);
+                }
+
+                $bid_time = date("Y-m-d H:i:s");
+                $logged_user = $this->session->userdata("user")->username;
+
+                $this->UserBids->createBid($this->auction->auction_id, $logged_user, $bid_time, $new_bid);
+                
+                redirect(base_url() .'InfoMessage/BidSuccessful?id=' . $this->auction->auction_id);
+            }
         }
  
 
