@@ -70,7 +70,9 @@
 				$data["auction_pictures"] = "";
 
 				if ($this->filesUploaded()){
-					$data["auction_pictures"] = implode(",",$_FILES["auction-pictures"]["name"]);
+					$path = $_FILES["auction-pictures"]["name"];
+					$path = str_replace(' ', '_', $path);
+					$data["auction_pictures"] = implode(",",$path);
 				}
 
 				$this->Auction->createNewAuction($data);
