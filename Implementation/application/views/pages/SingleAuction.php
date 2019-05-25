@@ -76,14 +76,14 @@
                         $time = strtotime($auction->start_time);
                     ?>
                     <p class="description">Starts:</p>
-                    <p class="value"><?php echo date("d-m-Y h:i:s", $time); ?></p>
+                    <p class="value"><?php echo date("d-m-Y H:i:s", $time); ?></p>
                 </div>
                 <div class="item-detail">
                     <?php 
-                        $time = strtotime($auction->start_time);
+                        $time = strtotime($auction->end_time);
                     ?>
                     <p class="description">Ends:</p>
-                    <p class="value"><?php echo date("d-m-Y h:i:s", $time); ?></p>
+                    <p class="value"><?php echo date("d-m-Y H:i:s", $time); ?></p>
                 </div>
                 <div class="item-detail">
                     <p class="description">Category:</p>

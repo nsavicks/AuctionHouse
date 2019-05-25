@@ -33,7 +33,15 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 
 		}
+		public function AuctionNotActive(){
+			$content["icon"] = "warning";
+			$content["message"] = "Auction has finished in the meantime.";
+			$content["buttonText"] = "Home";
+			$content["buttonLink"] = base_url() . 'Home';
 
+			$this->loadPageLayout("pages/InfoMessage", $content);
+
+		}
 		public function AuctionChanged(){
 			$id = $this->input->get("id");
 
