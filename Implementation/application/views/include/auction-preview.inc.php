@@ -2,7 +2,7 @@
     
     echo '
     <div class="auction-preview">';
-                if (empty($auction->auction_pictures)){
+                if ($auction->auction_pictures == ""){
                     echo '<img src="' . asset_url() . "img/no-image.png" . '" />';   
                 }
                 else{
@@ -20,7 +20,7 @@
 
                     <div class="meta-money">
                         <img src="'. asset_url() . 'img/money-icon.png">
-                        <em>' . $auction->starting_price . ' rsd.</em>
+                        <em>' . $auction->max_bid . ' rsd.</em>
                     </div>
                 </div>
                 <a href="' . base_url() . 'SingleAuction?id=' . $auction->auction_id . '">

@@ -21,10 +21,10 @@
 
         public function getNewestAuctions($limit = null){
             if ($limit != null){
-                return $this->db->order_by("create_time","DESC")->limit($limit)->where("auction_state","Active")->get("auctions")->result();
+                return $this->db->order_by("create_time","DESC")->limit($limit)->where("auction_state","Active")->get("auctions_info_view")->result();
             }
             else{
-                return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions")->result();
+                return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions_info_view")->result();
             }
         }
 

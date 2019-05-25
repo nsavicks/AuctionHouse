@@ -167,7 +167,7 @@
 
 		public function AuctionAddedSuccess(){
 			$content["icon"] = "check";
-			$content["message"] = "Success: You have successfully create an auction!";
+			$content["message"] = "Success: You have successfully created an auction!";
 			$content["buttonText"] = "Go to Home";
 			$content["buttonLink"] = base_url();
 

@@ -81,15 +81,18 @@
 
 					$config["upload_path"] = $path . "/";
 					$config["allowed_types"] = 'gif|jpg|png';
+					$config['max_size'] = '10240';
 
 		            $this->upload->initialize($config);
 
 		            if (! $this->upload->do_upload("ppicture")){
+		            	//echo $this->upload->display_errors(); 
 		            	rmdir($path);
 		            	redirect("InfoMessage/PictureUploadFailed");  	
 		            }
 
 		            $data["profile_picture"] = $this->upload->data("file_name");
+
 				}
 
 	         

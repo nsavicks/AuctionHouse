@@ -21,20 +21,22 @@
 
         private function filesUploaded() {
 
-		    // bail if there were no upload forms
-		   if(empty($_FILES))
-		        return false;
+           //print_r($_FILES);
 
-		    // check for uploaded files
-		    $files = $_FILES['auction-pictures']['tmp_name'];
-		    foreach( $files as $field_title => $temp_name ){
-		        if( !empty($temp_name) && is_uploaded_file( $temp_name )){
-		            // found one!
-		            return true;
-		        }
-		    }   
-		    // return false if no files were found
-		   return false;
+		   if(isset($_FILES['auction-pictures']) ){  
+
+				foreach($_FILES['auction-pictures']['tmp_name'] as $key => $tmp_name ){
+
+				      if(!empty($_FILES['auction-pictures']['tmp_name'][$key])){
+				      	return true;
+				      }
+				    
+				}
+			}
+			
+
+			return false;
+
 		}
 
 		public function index(){
@@ -85,6 +87,7 @@
 
 					$config["upload_path"] = $path . "/";
 					$config["allowed_types"] = 'gif|jpg|png';
+					$config['max_size'] = '10240';
 
 					$files = $_FILES;
 					$cnt = count($_FILES["auction-pictures"]["name"]);
@@ -102,6 +105,8 @@
 				        if (!$this->upload->do_upload("auction-pictures")){
 				        	rmdir($path);
 				        	$this->Auction->deleteAuction($id);
+				        	echo $this->upload->display_errors();
+				        	return;
 		            		redirect("InfoMessage/PictureUploadFailed");
 				        }
 

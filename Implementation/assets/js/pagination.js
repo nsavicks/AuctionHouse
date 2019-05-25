@@ -51,7 +51,7 @@
                 {
                     var tr = document.createElement("tr");
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    td.innerHTML = '<a href="' + base_url + 'SingleAuction?id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
@@ -76,7 +76,7 @@
                 {
                     var tr = document.createElement("tr");
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    td.innerHTML = '<a href="' + base_url + 'SingleAuction?id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
@@ -150,7 +150,7 @@
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    td.innerHTML = '<a href="' + base_url + 'SingleAuction?id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
@@ -178,7 +178,7 @@
                     var tr = document.createElement("tr");
 
                     var td = document.createElement("td");
-                    td.innerHTML = '<a href="' + base_url + 'SingleItem?auction_id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
+                    td.innerHTML = '<a href="' + base_url + 'SingleAuction?id=' + data[id][i].auction_id + '">' + data[id][i].auction_id + '</a>';
                     tr.appendChild(td);
 
                     var td = document.createElement("td");
