@@ -11,17 +11,11 @@
  *
  * @author Aleksandar
  */
-//use assets\lib\PHPMailer\PHPMailer\PHPMailer; 
-//use assets\lib\PHPMailer\PHPMailer\Exception;
-
-use PHPMailer\PHPMailer\PHPMailer; 
-use PHPMailer\PHPMailer\Exception;
 
 class Contact extends CI_Controller{
 
         public function __construct(){
             parent::__construct();
-            $this->load->model("Auction");
         }
         
          private function loadPageLayout($page){
@@ -35,56 +29,33 @@ class Contact extends CI_Controller{
         }
 
         public function index(){
-           // $content["newest"] = $this->Auction->getNewestAuctions(4);
-           // $content["featured"] = $this->Auction->getFeaturedAuctions(4);
           
             $this->loadPageLayout("pages/Contact.php");
         }
+
         public function SendMail() {
-          $fname = $this->input->post("fname");  
-          $lname = $this->input->post("lname");
-          $email = $this->input->post("email");
-          $message = $this->input->post("message");
-    
-                
-         // PHPMailer classes into the global namespace
-        // Base files 
-        
-        require 'assets/lib/PHPMailer/vendor/autoload.php';
-        //require asset_url().'lib/PHPMailer/src/PHPMailer.php';
-        //require asset_url().'lib/PHPMailer/src/SMTP.php';
-        // create object of PHPMailer class with boolean parameter which sets/unsets exception.
-        $mail = new PHPMailer(true);                              
-        try { 
-            $mail->isSMTP(); // using SMTP protocol                                     
-            $mail->Host = 'smtp.gmail.com'; // SMTP host as gmail 
-            $mail->SMTPDebug=4;// in production this should be forbiden
-            $mail->SMTPAuth = true;  // enable smtp authentication                             
-            $mail->Username = 'aleksandarpantic98@gmail.com';  // sender gmail host              
-            $mail->Password = 'sifra mejla'; // sender gmail host password                          
-            $mail->Password = 'sifra'; // sender gmail host password                          
-            $mail->SMTPSecure = 'ssl';  // for encrypted connection                           
-            $mail->Port = 465;   // port for SMTP     
-            $mail->SMTPKeepAlive = true;  
-             $mail->Mailer = "smtp"; 
-           /* $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_p'
-                    . 'eer_name' => false,
-                    'allow_self_signed' => true
-                    )
-                );*/
-            $mail->setFrom('aleksandarpantic98@gmail.com', "Sender"); // sender's email and name
-            $mail->addAddress('aleksandarpantic98@gmail.com', "Receiver");  // receiver's email and name
 
-            $mail->Subject = 'Test subject';
-            $mail->Body    = 'Test body';
+            $fname = $this->input->post("fname");  
+            $lname = $this->input->post("lname");
+            $email = $this->input->post("email");
+            $subject = $this->input->post("subject");
+            $message = $this->input->post("message");
 
-            $mail->send(); echo 'Message has been sent';
-              redirect("InfoMessage/SendingMailSuccessful");
-        } catch (Exception $e) { 
-           echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-        }
+            $content = "First name: " . $fname . "\r\n";
+            $content .= "Last name: " . $lname . "\r\n";
+            $content .= "E-mail: " . $email . "\r\n";
+            $content .= "Message: " . $message . "\r\n";
+
+
+
+
+            if (mail("auctionhousepsi@gmail.com",$subject, $content)){
+                redirect("InfoMessage/EmailSentSuccess");
+            }
+            else{
+                redirect("InfoMessage/EmailSentFailed");
+            }
+
+       
         }
 }

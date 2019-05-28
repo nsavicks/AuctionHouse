@@ -7,9 +7,10 @@
             <input type="text" name="lname" placeholder="Your last name...">
             <label for="email">E-mail</label>
             <input type="email" name="email" placeholder="Your e-mail address..." required>
+            <label for="subject">Subject</label>
+            <input type="text" name="subject" placeholder="Insert subject..." required>
             <label for="message">Message</label>
             <textarea id="message" name="message" placeholder="Your message..." rows="10" required></textarea>
             <input type="submit" name="submit" value="Submit">
         </form>
     </div>
-    </div

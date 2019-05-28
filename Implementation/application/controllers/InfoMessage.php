@@ -211,6 +211,24 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		public function EmailSentSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: Your e-mail has been sent successfully!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
+		public function EmailSentFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Failed: There was a problem sending e-mail!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Contact';
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
 		/**
 		 * function for showing message info page
 		 * in this function you can specify all the parameters you need
