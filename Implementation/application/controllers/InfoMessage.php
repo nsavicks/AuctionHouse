@@ -163,7 +163,14 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
+                public function SendingMailSuccessful(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: You have successfully sent us mail!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
 
+			$this->loadPageLayout("pages/InfoMessage", $content);
+		}
 		public function AuctionNotFound(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: The auction you have been looking for has not been found!";
@@ -232,6 +239,24 @@
 			$content["message"] = "Error: You are not logged in";
 			$content["buttonText"] = "Go to login page";
 			$content["buttonLink"] = base_url() . "Login";
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
+		public function EmailSentSuccess(){
+			$content["icon"] = "check";
+			$content["message"] = "Success: Your e-mail has been sent successfully!";
+			$content["buttonText"] = "Go to Home";
+			$content["buttonLink"] = base_url();
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
+		public function EmailSentFailed(){
+			$content["icon"] = "warning";
+			$content["message"] = "Failed: There was a problem sending e-mail!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'Contact';
 
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}

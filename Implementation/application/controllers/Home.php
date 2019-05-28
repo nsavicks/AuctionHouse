@@ -17,7 +17,7 @@
             $this->load->view("footer.php");
         }
 
-        public function index(){
+        public function index(){ 
             $content["newest"] = $this->Auction->getNewestAuctions(4);
             $content["featured"] = $this->Auction->getFeaturedAuctions(4);
             $this->loadPageLayout("pages/Home.php", $content);
