@@ -62,6 +62,7 @@ class Contact extends CI_Controller{
             $mail->SMTPAuth = true;  // enable smtp authentication                             
             $mail->Username = 'aleksandarpantic98@gmail.com';  // sender gmail host              
             $mail->Password = 'sifra mejla'; // sender gmail host password                          
+            $mail->Password = 'sifra'; // sender gmail host password                          
             $mail->SMTPSecure = 'ssl';  // for encrypted connection                           
             $mail->Port = 465;   // port for SMTP     
             $mail->SMTPKeepAlive = true;  
