@@ -45,7 +45,15 @@
                 return $this->db->where("auction_state","Active")->get()->result();
             }
         }
+            public function getActiveAuctions(){
+            $this->db->select("*");
+            $this->db->from("auctions_info_view");
+            $this->db->where("auction_state", "Active");
+            $this->db->order_by("end_time");
 
+            return $this->db->get()->result();
+
+        }
         public function getPendingAuctions(){
             $this->db->select("*");
             $this->db->from("auctions");
@@ -54,8 +62,25 @@
 
             return $this->db->get()->result();
 
+        }   
+         public function getAuctionByCategoryName($category){
+            $this->db->select("*");
+            $this->db->from("auction_categories a");
+            $this->db->join("auctions_info_view b","b.category=a.category_id");
+            $this->db->where("a.category_name",$category);
+             $this->db->where("auction_state", "Active");
+             $this->db->order_by("end_time");
+            return $this->db->get()->result();
+            
+            
         }
+         public function getAuctionByCategoryId($category){
+            $this->db->select("*");
+            $this->db->from("auctions a");
+            $this->db->where("a.category",$category);
 
+            return $this->db->get()->result();
+        }
         public function getAuctionById($id){
             $this->db->select("*");
             $this->db->from("auctions a");
