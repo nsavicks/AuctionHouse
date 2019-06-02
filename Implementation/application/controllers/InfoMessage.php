@@ -42,6 +42,7 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 
 		}
+
 		public function AuctionChanged(){
 			$id = $this->input->get("id");
 

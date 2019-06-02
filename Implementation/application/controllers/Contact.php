@@ -33,6 +33,7 @@ class Contact extends CI_Controller{
             $this->loadPageLayout("pages/Contact.php");
         }
 
+        
         public function SendMail() {
 
             $fname = $this->input->post("fname");  
