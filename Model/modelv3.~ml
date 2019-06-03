@@ -26618,7 +26618,7 @@
 <XPD:REF name="Namespace">2AAhdnnR+kC+sBh+kFLxUgAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLUseCaseDiagram" guid="EhAvaNX5FU2Ag6uHsM4euwAA">
-<XPD:ATTR name="Name" type="string">UseCaseDiagram1</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">AuctionHouse UseCase diagram</XPD:ATTR>
 <XPD:REF name="DiagramOwner">9VdHvzeUMECRKRCmB0tjLQAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLUseCaseDiagramView" guid="VmeSqv4AvUCKIh1przPDPgAA">
 <XPD:REF name="Diagram">EhAvaNX5FU2Ag6uHsM4euwAA</XPD:REF>
