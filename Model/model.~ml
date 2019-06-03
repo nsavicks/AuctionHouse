@@ -16492,7 +16492,7 @@
 <XPD:REF name="Instances[12]">Z1nc+TYbGEGLDu4rP6E9mwAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[1]" type="UMLActor" guid="FJCPhweroU2YRjVUwf/AxwAA">
-<XPD:ATTR name="Name" type="string">User</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Registrovani korisnik</XPD:ATTR>
 <XPD:REF name="Namespace">wiL/TKEblkaG4XJg2KVu2AAA</XPD:REF>
 <XPD:ATTR name="#Instances" type="integer">10</XPD:ATTR>
 <XPD:REF name="Instances[0]">97RUS+P8LUuU8o58IPr3sgAA</XPD:REF>
@@ -16524,7 +16524,7 @@
 <XPD:REF name="Instances[11]">ZIt3qiOfw0mMGOH/jbLATQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[3]" type="UMLActor" guid="9AmKB0SiAUKFy5WkW0xYNwAA">
-<XPD:ATTR name="Name" type="string">Guest</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Gost</XPD:ATTR>
 <XPD:REF name="Namespace">wiL/TKEblkaG4XJg2KVu2AAA</XPD:REF>
 <XPD:ATTR name="#Instances" type="integer">2</XPD:ATTR>
 <XPD:REF name="Instances[0]">60w+6RJi8U22DpbFROML6QAA</XPD:REF>
@@ -16598,7 +16598,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="oefeF5SrKEOYf8uuQ+htvAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="Uoq0yi1bYk6NS+0xJA3NTQAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : Guest</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : Gost</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="FSBPpERaKUG+/AFZHynCfAAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
@@ -17387,7 +17387,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="tBbWuoJOTE6Ho/FidouVvgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="bfE6zmkiVUm7eOruzLITDgAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : Guest</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : Gost</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="kQLTrrq6TEyovdrfdCTrRwAA">
 <XPD:ATTR name="Visible" type="boolean">False</XPD:ATTR>
