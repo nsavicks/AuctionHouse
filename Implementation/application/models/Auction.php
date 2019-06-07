@@ -1,6 +1,7 @@
 <?php
 
     /**
+     *@author Nebojsa
      * Class for auction.
      */
     class Auction extends CI_Model{

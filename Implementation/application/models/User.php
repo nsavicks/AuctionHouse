@@ -1,5 +1,6 @@
 <?php
 	/**
+	 *@author Nebojsa
 	 * Class for user.
 	 */
 	class User extends CI_Model{

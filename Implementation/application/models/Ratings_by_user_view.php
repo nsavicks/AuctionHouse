@@ -1,5 +1,6 @@
 <?php
     /**
+     *@author Filip
      * Ratings by user visualization of the data that model contains.
      */
     class Ratings_by_user_view extends CI_Model{

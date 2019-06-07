@@ -1,5 +1,6 @@
 <?php
 	/**
+	 *@author Mihailo
 	 * Class for user bids.
 	 */
 	class UserBids extends CI_Model{
