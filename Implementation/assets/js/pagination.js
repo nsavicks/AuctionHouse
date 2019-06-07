@@ -135,7 +135,6 @@
                             <a href="` + base_url + `ManageAccounts/AddModerator/` + data[id][i].username + `"><img src="` + asset_url + `img/add-moderator.png"></a>
                             <a href="` + base_url + `ManageAccounts/ClearPrivileges/` + data[id][i].username + `"><img src="` + asset_url + `img/clear-privileges.png"></a>
                             <a href="` + base_url + `ManageAccounts/BanUser/` + data[id][i].username + `"><img src="` + asset_url + `img/blockR.png"></a>
-                            <a href="` + base_url + `ManageAccounts/DeleteUser/` + data[id][i].username + `"><img src="` + asset_url + `img/remove.png"></a>
                     `;
                     tr.appendChild(td);
                 }

@@ -262,6 +262,33 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		public function UserAlreadyBanned(){
+			$content["icon"] = "warning";
+			$content["message"] = "Failed: User is already banned!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'ManageAccounts';
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
+		public function CantBanYourself(){
+			$content["icon"] = "warning";
+			$content["message"] = "Failed: You cannot ban yourself!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'ManageAccounts';
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
+		public function CantPromote(){
+			$content["icon"] = "warning";
+			$content["message"] = "Failed: You cannot promote banned user!";
+			$content["buttonText"] = "Go back";
+			$content["buttonLink"] = base_url() . 'ManageAccounts';
+
+			$this->loadPageLayout("pages/infoMessage", $content);
+		}
+
 		/**
 		 * function for showing message info page
 		 * in this function you can specify all the parameters you need

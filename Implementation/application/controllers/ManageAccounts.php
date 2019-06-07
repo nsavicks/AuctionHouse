@@ -84,8 +84,13 @@
 					else{
 						// setting admin privileges
 				
-						$this->User->addAdmin($username);
-						redirect("InfoMessage/BasicInfoMessageCase/AddAdministratorSuccess/ManageAccounts/manage accounts");
+						if ($targetUser[0]->banned == 1){
+							redirect("InfoMessage/CantPromote");
+						}
+						else{
+							$this->User->addAdmin($username);
+							redirect("InfoMessage/BasicInfoMessageCase/AddAdministratorSuccess/ManageAccounts/manage accounts");
+						}
 					}
 				}
 
@@ -122,8 +127,13 @@
 						redirect("InfoMessage/BasicInfoMessageCase/UserIsModerator/ManageAccounts/manage accounts");
 					}
 					else{
-						$this->User->addModerator($username);
-						redirect("InfoMessage/BasicInfoMessageCase/AddModeratorSuccess/ManageAccounts/manage accounts");
+						if ($targetUser[0]->banned == 1){
+							redirect("InfoMessage/CantPromote");
+						}
+						else{
+							$this->User->addModerator($username);
+							redirect("InfoMessage/BasicInfoMessageCase/AddModeratorSuccess/ManageAccounts/manage accounts");
+						}
 					}
 				}
 
@@ -147,9 +157,16 @@
 				}
 				else {
 					// admin
+
+					$targetUser = $this->User->getUserHavingUsername($username);
 				
-					$this->User->clearPrivileges($username);
-					redirect("InfoMessage/BasicInfoMessageCase/ClearPrivilegesSuccess/ManageAccounts/manage accounts");
+					if ($targetUser[0]->banned == 1){
+							redirect("InfoMessage/CantPromote");
+						}
+						else{
+							$this->User->clearPrivileges($username);
+							redirect("InfoMessage/BasicInfoMessageCase/ClearPrivilegesSuccess/ManageAccounts/manage accounts");
+						}
 				}
 			}
 			else {
@@ -171,9 +188,25 @@
 				}
 				else {
 					// admin
-					
-					$this->User->banUser($username, $user->username, $reason);
-					redirect("InfoMessage/BasicInfoMessageCase/BanUserSuccess/ManageAccounts/manage accounts");
+
+					$toBan = $this->User->getUserHavingUsername($username);
+
+					if ($toBan[0]->banned == 1){
+						redirect("InfoMessage/UserAlreadyBanned");
+					}
+					else{
+						// OK
+
+						if ($user->username == $username){
+							redirect("InfoMessage/CantBanYourself");
+						}
+						else{
+							$this->User->banUser($username, $user->username, $reason);
+							redirect("InfoMessage/BasicInfoMessageCase/BanUserSuccess/ManageAccounts/manage accounts");
+						}
+						
+					}
+						
 				}
 			}
 			else {
@@ -184,6 +217,9 @@
 		}
 
 		public function DeleteUser($username){
+
+			redirect('InfoMessage/PageNotFound');
+
 			if ($this->session->has_userdata("user")){
 				// logged in
 

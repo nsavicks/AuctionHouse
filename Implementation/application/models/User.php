@@ -79,6 +79,7 @@
 
 			// setting banned flag to 1 in users table
 			$this->db->set("banned", 1);
+			$this->db->set("user_rank",3);
 			$this->db->where("username", $username);
 			$this->db->update("users");
 
