@@ -1,7 +1,11 @@
 <?php
-	
+	/**
+	 * Class for user.
+	 */
 	class User extends CI_Model{
-
+		/**
+		 * Constructor of this Model
+		 */
 		public function __construct(){
 			parent::__construct();
 		}
@@ -126,13 +130,24 @@
 			$this->db->where("username", $username);
 			$this->db->update("users");
 		}
-
+		/**
+		 * Changes password
+		 *
+		 * @param      string  $username     The username
+		 * @param      string  $newpassword  The newpassword
+		 */
 		public function changePassword($username, $newpassword){
 			$this->db->set('password', $newpassword);
 			$this->db->where('username', $username);
 			$this->db->update('users');
 		}
-
+		/**
+		 * Gets number of all active auctions
+		 *
+		 * @param      string  $username  The username
+		 *
+		 * @return     int  nuber of all active auctions
+		 */
 		public function numberOfActiveAuctions($username){
 			$this->db->from("users u");
 			$this->db->join("auctions a", "a.auction_owner = u.username");
