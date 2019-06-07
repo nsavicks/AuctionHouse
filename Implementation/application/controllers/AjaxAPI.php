@@ -1,6 +1,8 @@
 <?php
 
-	
+	/**
+	 * Class for ajax api.
+	 */
 	class AjaxAPI extends CI_Controller{
 
 		public function __construct(){

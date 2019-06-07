@@ -1,19 +1,34 @@
 <?php
 
+    /**
+     * Class for auction.
+     */
     class Auction extends CI_Model{
-
+        /**
+         * Constructor for Auction class
+         */
         public function __construct(){
             parent::__construct();
 
             $this->checkAndFinishAll();
 
         }
-
+        /**
+         * Gets the maximum bid.
+         *
+         * @param      int  $auction_id  The auction identifier
+         *
+         * @return     int  The maximum bid.
+         */
         public function getMaxBid($auction_id){
             $this->db->where('auction_id', $auction_id);
             return $this->db->get('max_bids_view')->row();
         }
-
+        /**
+         * Gets all auctions.
+         *
+         * @return     array  All auctions.
+         */
         public function getAllAuctions(){
             
             $this->db->from("auctions_info_view");
@@ -21,7 +36,13 @@
 
             return $this->db->get()->result();
         }
-
+        /**
+         * Gets the newest auctions.
+         *
+         * @param      int  $limit  The limit
+         *
+         * @return     Auction  The newest auctions.
+         */
         public function getNewestAuctions($limit = null){
             if ($limit != null){
                 return $this->db->order_by("create_time","DESC")->limit($limit)->where("auction_state","Active")->get("auctions_info_view")->result();
@@ -30,7 +51,13 @@
                 return $this->db->order_by("create_time","DESC")->where("auction_state","Active")->get("auctions_info_view")->result();
             }
         }
-
+/**
+ * Gets the featured auctions.
+ *
+ * @param      int  $limit  The limit
+ *
+ * @return     Auction The featured auctions.
+ */
         public function getFeaturedAuctions($limit = null){
 
             $this->db->select("*");
@@ -45,6 +72,11 @@
                 return $this->db->where("auction_state","Active")->get()->result();
             }
         }
+        /**
+         * Gets the active auctions.
+         *
+         * @return     Auction  The active auctions.
+         */
             public function getActiveAuctions(){
             $this->db->select("*");
             $this->db->from("auctions_info_view");
@@ -54,6 +86,11 @@
             return $this->db->get()->result();
 
         }
+        /**
+         * Gets the pending auctions.
+         *
+         * @return     Auction  The pending auctions.
+         */
         public function getPendingAuctions(){
             $this->db->select("*");
             $this->db->from("auctions");
@@ -63,6 +100,13 @@
             return $this->db->get()->result();
 
         }   
+        /**
+         * Gets the auction by category name.
+         *
+         * @param      string  $category  The category
+         *
+         * @return     Auction  The auction by category name.
+         */
          public function getAuctionByCategoryName($category){
             $this->db->select("*");
             $this->db->from("auction_categories a");
@@ -74,6 +118,13 @@
             
             
         }
+        /**
+         * Gets the auction by category identifier.
+         *
+         * @param      int  $category  The categoryId
+         *
+         * @return     Auction  The auction by category identifier.
+         */
          public function getAuctionByCategoryId($category){
             $this->db->select("*");
             $this->db->from("auctions a");
@@ -81,6 +132,13 @@
 
             return $this->db->get()->result();
         }
+        /**
+         * Gets the auction by identifier.
+         *
+         * @param      int  $id     The identifier
+         *
+         * @return     Auction  The auction by identifier.
+         */
         public function getAuctionById($id){
             $this->db->select("*");
             $this->db->from("auctions a");
@@ -88,12 +146,22 @@
 
             return $this->db->get()->result();
         }
-
+        /**
+         * Creates a new auction.
+         *
+         * @param      Collection  $data   The data
+         */
         public function createNewAuction($data){
 
             $this->db->insert("auctions",$data);
         }
-
+        /**
+         * Gets the users last auction identifier.
+         *
+         * @param      string  $user   The user
+         *
+         * @return     int  The users last auction identifier.
+         */
         public function getUsersLastAuctionId($user){
             $this->db->from("auctions");
 
@@ -102,12 +170,22 @@
 
             return $this->db->get()->result()[0]->auction_id;
         }
-
+        /**
+         * Deletes Auction
+         *
+         * @param      int  $id     The identifier
+         */
         public function deleteAuction($id){
             $this->db->where("auction_id",$id);
             $this->db->delete("auctions");
         }
-
+        /**
+         * Gets the auctions created by user.
+         *
+         * @param      string  $username  The username
+         *
+         * @return     array  The auctions created by user.
+         */
         public function getAuctionsCreatedByUser($username){
             $this->db->from("auctions_info_view");
             $this->db->where("auction_owner", $username);
