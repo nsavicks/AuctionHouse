@@ -1,24 +1,24 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of Contact
- *
- * @author Aleksandar
+ *@author Aleksandar
+ * Contoller for contact.
  */
-
 class Contact extends CI_Controller{
 
+        /**
+         * constructo for controller
+         */
         public function __construct(){
             parent::__construct();
         }
         
-         private function loadPageLayout($page){
+        /**
+         * Loads a page layout.
+         *
+         * @param      string  $page   The page
+         */
+        private function loadPageLayout($page){
             $header_content["controller"] = "Contact";
             $header_content["page_title"] = "Contact";
             $header_content["page_icon"] = "phone";
@@ -28,12 +28,17 @@ class Contact extends CI_Controller{
             $this->load->view("footer.php");
         }
 
+        /**
+         * index function, default function called for this contoller
+         */
         public function index(){
           
             $this->loadPageLayout("pages/Contact.php");
         }
 
-        
+        /**
+         * Sends a mail and returns success/error message
+         */
         public function SendMail() {
 
             $fname = $this->input->post("fname");  
@@ -46,8 +51,6 @@ class Contact extends CI_Controller{
             $content .= "Last name: " . $lname . "\r\n";
             $content .= "E-mail: " . $email . "\r\n";
             $content .= "Message: " . $message . "\r\n";
-
-
 
 
             if (mail("auctionhousepsi@gmail.com",$subject, $content)){

@@ -1,12 +1,16 @@
 <?php
     /**
+     *@author Nebojsa
      * this is controller for showing single auction
      */
     class SingleAuction extends CI_Controller{
 
         // auction that is getted in constructor
         private $auction = null;
-            
+        
+        /**
+         * constructor for this controller
+         */
         public function __construct(){
 
             parent::__construct();

@@ -1,6 +1,7 @@
 <?php
 
 	/**
+	 *@author Filip
 	 * Controller class for ManageAccounts page
 	 */
 	class ManageAccounts extends CI_Controller{
@@ -62,6 +63,11 @@
 
 		}
 		
+		/**
+		 * Adds an administrator.
+		 *
+		 * @param      string  $username  The username
+		 */
 		public function AddAdministrator($username){
 			if ($this->session->has_userdata("user")){
 				// logged in

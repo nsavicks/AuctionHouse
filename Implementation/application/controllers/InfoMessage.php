@@ -1,12 +1,25 @@
 <?php 
 
-	
+	/**
+	 * @author Nebojsa
+	 * Controller for information message.
+	 * Each function shows certain message.
+	 */
 	class InfoMessage extends CI_Controller{
 
+		/**
+		 * constructor for this controller
+		 */
 		public function __construct(){
 			parent::__construct();
 		}
 
+		/**
+		 * Loads a page layout.
+		 *
+		 * @param      string  $page     The page
+		 * @param      array   $content  The content
+		 */
 		private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "InfoMessage";
             $header_content["page_title"] = "Info Message";
@@ -17,12 +30,18 @@
             $this->load->view("footer.php");
         }
 
+        /**
+         * index function, default function called for this contoller
+         */
 		public function index(){
 			
 			redirect("InfoMessage/PageNotFound");
 
 		}
 
+		/**
+		 * function if page is not found
+		 */
 		public function PageNotFound(){
 
 			$content["icon"] = "warning";
@@ -33,6 +52,10 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 
 		}
+
+		/**
+		 * fuction if auction is not active
+		 */
 		public function AuctionNotActive(){
 			$content["icon"] = "warning";
 			$content["message"] = "Auction has finished in the meantime.";
@@ -43,6 +66,9 @@
 
 		}
 
+		/**
+		 * function if auction is changed
+		 */
 		public function AuctionChanged(){
 			$id = $this->input->get("id");
 
@@ -55,6 +81,9 @@
 
 		}
 
+		/**
+		 * function if bid is successful
+		 */
 		public function BidSuccessful(){
 			$id = $this->input->get("id");
 
@@ -67,6 +96,9 @@
 
 		}
 
+		/**
+		 * function if registration failed
+		 */
 		public function RegistrationFailedBadUsername(){
 			$content["icon"] = "warning";
 			$content["message"] = "Registration failed: User with given username already exist!";
@@ -76,6 +108,10 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+
+		/**
+		 * function if registration failed because of bad email
+		 */
 		public function RegistrationFailedBadEmail(){
 			$content["icon"] = "warning";
 			$content["message"] = "Registration failed: User with given email already exist!";
@@ -85,6 +121,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if upload of picture failed
+		 */
 		public function PictureUploadFailed(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: File upload failed!";
@@ -94,6 +133,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if registration is successful
+		 */
 		public function RegistrationSuccessful(){
 			$content["icon"] = "check";
 			$content["message"] = "Registration successful: You can now login with your account!";
@@ -103,6 +145,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if login is successful
+		 */
 		public function LoginSuccessful(){
 			$content["icon"] = "check";
 			$content["message"] = "Login successful!";
@@ -111,6 +156,10 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
+
+		/**
+		 * function if login failed
+		 */
 		public function LoginFailed(){
 			$content["icon"] = "warning";
 			$content["message"] = "Login failed: check your username or password and try again.";
@@ -120,6 +169,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if change is successful
+		 */
 		public function ChangePasswordSuccessfull(){
 			$content["icon"] = "check";
 			$content["message"] = "Password successfully changed!";
@@ -129,6 +181,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if change failed because of same password
+		 */
 		public function SamePassword(){
 			$content["icon"] = "warning";
 			$content["message"] = "Old and new passwords are same: please type in new password and try again.";
@@ -138,6 +193,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if change failed because of repeat password
+		 */
 		public function WrongRepeatPassword(){
 			$content["icon"] = "warning";
 			$content["message"] = "New passwords are not same: please type in correct passwords and try again.";
@@ -147,6 +205,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if change failed because of wrong password
+		 */
 		public function WrongPassword(){
 			$content["icon"] = "warning";
 			$content["message"] = "Not valid password: please type in correct password and try again.";
@@ -156,6 +217,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if logout is successful
+		 */
 		public function LogoutSuccessful(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully logged out!";
@@ -164,7 +228,11 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
-                public function SendingMailSuccessful(){
+
+		/**
+		 * function if send was successful
+		 */
+        public function SendingMailSuccessful(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully sent us mail!";
 			$content["buttonText"] = "Go to Home";
@@ -172,6 +240,10 @@
 
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
+
+		/**
+		 * function if acution was not found
+		 */
 		public function AuctionNotFound(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: The auction you have been looking for has not been found!";
@@ -181,6 +253,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if auction was added
+		 */
 		public function AuctionAddedSuccess(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully created an auction!";
@@ -190,6 +265,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if auction was aprpoved
+		 */
 		public function AuctionApproveSuccess(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully approved auction!";
@@ -199,6 +277,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if addition failed
+		 */
 		public function AuctionApproveFailed(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: There was a problem approving auction";
@@ -208,6 +289,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function for if deny was successful
+		 */
 		public function AuctionDenySuccess(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully denied auction!";
@@ -217,6 +301,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function for if deny failed
+		 */
 		public function AuctionDenyFailed(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: There was a problem denying auction";
@@ -226,6 +313,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function for if auction delete succeded
+		 */
 		public function AuctionDeleteSuccess(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: You have successfully deleted auction!";
@@ -235,6 +325,9 @@
 			$this->loadPageLayout("pages/InfoMessage", $content);
 		}
 
+		/**
+		 * function if login is needed
+		 */
 		public function LoginNeeded(){
 			$content["icon"] = "warning";
 			$content["message"] = "Error: You are not logged in";
@@ -244,6 +337,9 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		/**
+		 * function if email was sent
+		 */
 		public function EmailSentSuccess(){
 			$content["icon"] = "check";
 			$content["message"] = "Success: Your e-mail has been sent successfully!";
@@ -253,6 +349,9 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		/**
+		 * function if email was not sent
+		 */
 		public function EmailSentFailed(){
 			$content["icon"] = "warning";
 			$content["message"] = "Failed: There was a problem sending e-mail!";
@@ -262,6 +361,9 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		/**
+		 * function is user was already banned
+		 */
 		public function UserAlreadyBanned(){
 			$content["icon"] = "warning";
 			$content["message"] = "Failed: User is already banned!";
@@ -271,6 +373,9 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		/**
+		 * function if admin tries to ban himself
+		 */
 		public function CantBanYourself(){
 			$content["icon"] = "warning";
 			$content["message"] = "Failed: You cannot ban yourself!";
@@ -280,6 +385,9 @@
 			$this->loadPageLayout("pages/infoMessage", $content);
 		}
 
+		/**
+		 * function if promote is unavailable
+		 */
 		public function CantPromote(){
 			$content["icon"] = "warning";
 			$content["message"] = "Failed: You cannot promote banned user!";

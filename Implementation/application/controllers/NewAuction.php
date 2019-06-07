@@ -1,13 +1,26 @@
 <?php
 	
+	/**
+	 *@author Mihailo
+	 * Controller for new auction.
+	 */
 	class NewAuction extends CI_Controller{
 
+		/**
+		 * constructor for this controller
+		 */
 		public function __construct(){
 			parent::__construct();
 			$this->load->model("Auction");
 			$this->load->model("AuctionCategories");
 		}
 
+		/**
+		 * Loads a page layout.
+		 *
+		 * @param      string  $page     The page
+		 * @param      array   $content  The content
+		 */
 		private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "NewAuction";
             $header_content["page_title"] = "New Auction";
@@ -19,6 +32,11 @@
 
         }
 
+        /**
+         * function for uploading files
+         *
+         * @return     boolean  ( description_of_the_return_value )
+         */
         private function filesUploaded() {
 
            //print_r($_FILES);
@@ -39,6 +57,9 @@
 
 		}
 
+		/**
+		 * index function, default function called for this contoller
+		 */
 		public function index(){
 
 			if ($this->session->has_userdata("user")){
@@ -54,6 +75,9 @@
 
 		}
 
+		/**
+		 * function which cheks and handles submit
+		 */
 		public function Submit(){
 
 			if ($this->session->has_userdata("user")){

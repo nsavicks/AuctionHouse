@@ -1,8 +1,14 @@
 <?php
 
-	
+	/**
+	 *	@author Nebojsa
+	 * Class for ajax api.
+	 */
 	class AjaxAPI extends CI_Controller{
 
+		/**
+		 * constructor for controller
+		 */
 		public function __construct(){
 
 			parent::__construct();
@@ -12,6 +18,9 @@
 
 		}
 
+		/**
+		 * Gets all auctions.
+		 */
 		public function getAllAuctions(){
 
 			$auctions = $this->Auction->getAllAuctions();
@@ -20,6 +29,9 @@
 
 		}
 
+		/**
+		 * Gets the pending auctions.
+		 */
 		public function getPendingAuctions(){
 
 			$auctions = $this->Auction->getPendingAuctions();
@@ -28,6 +40,9 @@
 
 		}
 
+		/**
+		 * Gets all users.
+		 */
 		public function getAllUsers(){
 
 			$users = $this->User->getAllUsers();

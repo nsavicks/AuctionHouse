@@ -1,14 +1,26 @@
 <?php 
 
-	
+	/**
+	 *@author Nebojsa
+	 * Controller for register.
+	 */
 	class Register extends CI_Controller{
 
+		/**
+		 * constructor for controller
+		 */
 		public function __construct(){
 			parent::__construct();
 
 			$this->load->model("User");
 		}
 
+		/**
+		 * Loads a page layout.
+		 *
+		 * @param      string  $page     The page
+		 * @param      array   $content  The content
+		 */
 		private function loadPageLayout($page, $content=[]){
             $header_content["controller"] = "Register";
             $header_content["page_title"] = "Register";
@@ -20,6 +32,9 @@
 
         } 
 
+        /**
+         * index function, default function called for this contoller
+         */
 		public function index(){
 
 			if ($this->session->has_userdata("user")){
@@ -32,6 +47,9 @@
 			}
 		}
 
+		/**
+		 * function which cheks and handles submit
+		 */
 		public function Submit(){
 
 			if ($this->session->has_userdata("user")){
