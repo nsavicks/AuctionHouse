@@ -71,6 +71,10 @@ input[type=search]:focus{
    border-color: #2f5e8e;
 }
 
+.item-filter form{
+   margin-bottom: 0;
+}
+
 button,input[type=submit],input[type=button]{
    padding: 15px;
    background-color: #2f5e8e;

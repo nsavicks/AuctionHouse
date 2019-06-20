@@ -57,8 +57,19 @@
 
     var globalData = new Array();
 
-    globalData["pending"] = <?php echo json_encode($pending); ?>;
-    globalData["all"] = <?php echo json_encode($all); ?>;
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", "AjaxAPI/getPendingAuctions", false);
+    xhttp.send();
+
+    globalData["pending"] = JSON.parse(xhttp.responseText);
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", "AjaxAPI/getAllAuctions", false);
+    xhttp.send();
+
+    globalData["all"] = JSON.parse(xhttp.responseText);
 
     var currentPage = new Array();
     currentPage["pending"] = 1;

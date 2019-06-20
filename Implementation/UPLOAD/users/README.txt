@@ -1,1 +1,0 @@
-In this folder we create subfolder for each user where his files will be stored

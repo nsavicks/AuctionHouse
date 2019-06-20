@@ -29,9 +29,14 @@
 
 <script>
 
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", "AjaxAPI/getAllUsers", false);
+    xhttp.send();
+
     var globalData = new Array();
 
-    globalData["users"] = <?php echo json_encode($users); ?>;
+    globalData["users"] = JSON.parse(xhttp.responseText);
 
     var currentPage = new Array();
     currentPage["users"] = 1;
