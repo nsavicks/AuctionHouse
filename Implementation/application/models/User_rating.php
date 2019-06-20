@@ -1,5 +1,6 @@
 <?php
 	/**
+	 *@author Aleksandar
 	 * Class for user rating.
 	 */
 	class User_rating extends CI_Model{
