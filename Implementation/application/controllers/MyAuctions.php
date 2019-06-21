@@ -1,6 +1,6 @@
 <?php
 	/**
-	 *@author Filip
+	 *@author Aleksandar
 	 * Controller for my auctions.
 	 */
 	class MyAuctions extends CI_Controller{

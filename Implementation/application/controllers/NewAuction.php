@@ -1,7 +1,7 @@
 <?php
 	
 	/**
-	 *@author Mihailo
+	 *@author Mihailo, Nebojsa
 	 * Controller for new auction.
 	 */
 	class NewAuction extends CI_Controller{

@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 *@author Filip
+	 *@author Filip, Nebojsa
 	 * Controller class for ManageAccounts page
 	 */
 	class ManageAccounts extends CI_Controller{

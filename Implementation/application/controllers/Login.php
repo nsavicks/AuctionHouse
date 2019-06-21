@@ -1,7 +1,7 @@
 <?php
 
     /**
-     *@author Aleksandar
+     *@author Filip, Nebojsa
      * Contoller for login.
      */
     class Login extends CI_Controller{

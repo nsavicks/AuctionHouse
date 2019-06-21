@@ -1,7 +1,7 @@
 <?php 
 
 	/**
-	 *@author Nebojsa
+	 *@author Nebojsa, Filip
 	 * Controller for register.
 	 */
 	class Register extends CI_Controller{

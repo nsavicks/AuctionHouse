@@ -1,7 +1,7 @@
 <?php
 
 	/**
-	 *@author Filip
+	 *@author Filip, Nebojsa
 	 * Controller class for Dashboard page
 	 */
 	class Dashboard extends CI_Controller{

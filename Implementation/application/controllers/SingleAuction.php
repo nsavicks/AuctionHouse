@@ -1,6 +1,6 @@
 <?php
     /**
-     *@author Nebojsa
+     *@author Nebojsa, Mihailo
      * this is controller for showing single auction
      */
     class SingleAuction extends CI_Controller{
