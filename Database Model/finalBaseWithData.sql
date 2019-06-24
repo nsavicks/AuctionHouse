@@ -1,15 +1,15 @@
-CREATE DATABASE  IF NOT EXISTS `auction_house_db` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `auction_house_db` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
 USE `auction_house_db`;
--- MySQL dump 10.13  Distrib 5.7.24, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
 -- Host: localhost    Database: auction_house_db
 -- ------------------------------------------------------
--- Server version	5.7.24
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+ SET NAMES utf8 ;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,14 +23,14 @@ USE `auction_house_db`;
 
 DROP TABLE IF EXISTS `auction_categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `auction_categories` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(45) NOT NULL,
   PRIMARY KEY (`category_id`),
   UNIQUE KEY `category_id_UNIQUE` (`category_id`),
   UNIQUE KEY `category_name_UNIQUE` (`category_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `auction_categories` (
 
 LOCK TABLES `auction_categories` WRITE;
 /*!40000 ALTER TABLE `auction_categories` DISABLE KEYS */;
-INSERT INTO `auction_categories` VALUES (1,'Cars'),(2,'Computers'),(3,'Sports');
+INSERT INTO `auction_categories` VALUES (9,'Bikes'),(4,'Books'),(1,'Cars'),(5,'Clothes'),(11,'Collectionables'),(2,'Computers'),(10,'Equipment'),(6,'Phones'),(3,'Sports'),(8,'Tickets'),(7,'Toys');
 /*!40000 ALTER TABLE `auction_categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `auctions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `auctions` (
   `auction_id` int(11) NOT NULL AUTO_INCREMENT,
   `auction_name` varchar(45) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE `auctions` (
   KEY `FK_category_idx` (`category`),
   CONSTRAINT `FK_auction_owner` FOREIGN KEY (`auction_owner`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE,
   CONSTRAINT `FK_category` FOREIGN KEY (`category`) REFERENCES `auction_categories` (`category_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -79,18 +79,18 @@ CREATE TABLE `auctions` (
 
 LOCK TABLES `auctions` WRITE;
 /*!40000 ALTER TABLE `auctions` DISABLE KEYS */;
-INSERT INTO `auctions` VALUES (6,'Aukcija #1','ASDADSADADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','admin',1,'2019-04-18 18:57:01','2019-04-18 18:57:08',7,1000,'New',NULL,'2019-04-18 18:57:01','Pending confirmation'),(7,'Aukcija #2','ASDADSADADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA','admin',2,'2019-04-18 18:57:08','2019-04-18 18:57:15',7,1000,'New',NULL,'2019-04-18 18:57:08','Pending confirmation'),(9,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:44','2019-04-25 23:44:44',7,10,'100',NULL,'2019-04-25 23:44:44','Pending confirmation'),(10,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:48','2019-04-25 23:44:48',7,10,'100',NULL,'2019-04-25 23:44:48','Pending confirmation'),(11,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:48','2019-04-25 23:44:48',7,10,'100',NULL,'2019-04-25 23:44:48','Pending confirmation'),(12,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:49','2019-04-25 23:44:49',7,10,'100',NULL,'2019-04-25 23:44:49','Pending confirmation'),(13,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:49','2019-04-25 23:44:49',7,10,'100',NULL,'2019-04-25 23:44:49','Pending confirmation'),(14,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:49','2019-04-25 23:44:49',7,10,'100',NULL,'2019-04-25 23:44:49','Pending confirmation'),(15,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:50','2019-04-25 23:44:50',7,10,'100',NULL,'2019-04-25 23:44:50','Pending confirmation'),(16,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:50','2019-04-25 23:44:50',7,10,'100',NULL,'2019-04-25 23:44:50','Pending confirmation'),(17,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:50','2019-04-25 23:44:50',7,10,'100',NULL,'2019-04-25 23:44:50','Pending confirmation'),(18,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:51','2019-04-25 23:44:51',7,10,'100',NULL,'2019-04-25 23:44:51','Pending confirmation'),(19,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:51','2019-04-25 23:44:51',7,10,'100',NULL,'2019-04-25 23:44:51','Pending confirmation'),(20,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:51','2019-04-25 23:44:51',7,10,'100',NULL,'2019-04-25 23:44:51','Pending confirmation'),(21,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:51','2019-04-25 23:44:51',7,10,'100',NULL,'2019-04-25 23:44:51','Pending confirmation'),(22,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:52','2019-04-25 23:44:52',7,10,'100',NULL,'2019-04-25 23:44:52','Pending confirmation'),(23,'Aukcija','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-25 23:44:52','2019-04-25 23:44:52',7,10,'100',NULL,'2019-04-25 23:44:52','Pending confirmation'),(24,'Proba','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-26 01:47:36','2019-04-26 01:47:36',7,10,'100',NULL,'2019-04-26 01:47:36','Denied'),(25,'Proba','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-26 01:47:36','2019-04-26 01:47:36',7,10,'100',NULL,'2019-04-26 01:47:36','Active'),(26,'Proba','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-26 01:47:37','2019-04-26 01:47:37',7,10,'100',NULL,'2019-04-26 01:47:37','Active'),(27,'Proba','ASdadsadadadadasdsadasdsadadadsad','admin',1,'2019-04-26 01:47:37','2019-04-26 01:47:37',7,10,'100',NULL,'2019-04-26 01:47:37','Pending confirmation');
+INSERT INTO `auctions` VALUES (37,'Lamborghini Urus','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',1,'2019-06-22 00:11:30','2019-07-22 00:11:30',30,200000,'New','2019-lamborghini-urus.jpg,download.jpg','2019-06-22 00:11:05','Active'),(38,'Rolex Submariner','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',11,'2019-06-22 00:17:25','2019-07-02 00:17:25',10,150000,'Used','download_(1).jpg,Roy_Tong_-_Rolex_Submariner_No-Date_600x.jpg','2019-06-22 00:13:04','Active'),(39,'Goldenfir SSD 240GB','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',2,'2019-06-22 00:17:18','2019-06-29 00:17:18',7,1000,'New','ssd.jpg','2019-06-22 00:14:09','Active'),(40,'Nice Lamp','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',11,'2019-06-22 00:17:29','2019-06-22 00:18:29',15,0,'New','A1205434.jpg','2019-06-22 00:14:38','Finished'),(41,'Samsung Galaxy S10','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',6,'2019-06-22 00:17:14','2019-07-12 00:17:14',20,50000,'Used','1.jpg,2.jpg','2019-06-22 00:15:50','Active'),(42,'Cube MTB Bike','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',9,'2019-06-22 00:17:16','2019-07-22 00:17:16',30,30000,'New','cube-acid-2018-mountain-bike-hires.jpg','2019-06-22 00:16:26','Active'),(43,'LOTR Book Collection','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','bojsa',4,'2019-06-22 00:17:31','2019-06-27 00:17:31',5,1000,'New','lord-of-the-rings-millennium-edition-1.jpg','2019-06-22 00:17:08','Active'),(44,'Lopta','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','admin',3,NULL,NULL,7,500,'New','74875E_SIDE.jpg','2019-06-22 00:31:45','Denied'),(45,'Cadillac','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','nsavic',1,'2019-06-22 00:35:37','2019-07-06 00:35:37',14,780000,'New','car.jpg','2019-06-22 00:34:42','Active'),(46,'Cool T-shirt','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.','nsavic',5,'2019-06-22 00:35:35','2019-06-27 00:35:35',5,1000,'New','s.jpg','2019-06-22 00:35:27','Active');
 /*!40000 ALTER TABLE `auctions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `auctions_info_view`
+-- Temporary view structure for view `auctions_info_view`
 --
 
 DROP TABLE IF EXISTS `auctions_info_view`;
 /*!50001 DROP VIEW IF EXISTS `auctions_info_view`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `auctions_info_view` AS SELECT 
  1 AS `auction_id`,
  1 AS `auction_name`,
@@ -115,7 +115,7 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `bids`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `bids` (
   `bid_id` int(11) NOT NULL AUTO_INCREMENT,
   `auction_id` int(11) NOT NULL,
@@ -128,7 +128,7 @@ CREATE TABLE `bids` (
   KEY `username_idx` (`username`),
   CONSTRAINT `FK_auction_id` FOREIGN KEY (`auction_id`) REFERENCES `auctions` (`auction_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,18 +137,18 @@ CREATE TABLE `bids` (
 
 LOCK TABLES `bids` WRITE;
 /*!40000 ALTER TABLE `bids` DISABLE KEYS */;
-INSERT INTO `bids` VALUES (1,6,'admin','2019-04-18 19:02:42',1300),(2,6,'admin','2019-04-18 19:02:48',1400),(3,6,'admin','2019-04-18 19:02:51',22200),(4,6,'admin','2019-04-18 19:02:54',22201),(5,7,'admin','2019-04-18 19:02:58',2),(6,7,'admin','2019-04-18 19:03:01',32);
+INSERT INTO `bids` VALUES (38,40,'admin','2019-06-22 00:29:08',566),(39,41,'admin','2019-06-22 00:29:19',50017),(40,42,'admin','2019-06-22 00:29:31',30001),(41,37,'nsavic','2019-06-22 00:32:56',200001),(42,37,'nsavic','2019-06-22 00:32:58',200002),(43,38,'nsavic','2019-06-22 00:33:09',150001),(44,41,'nsavic','2019-06-22 00:33:19',60000),(45,40,'nsavic','2019-06-22 00:33:37',3630),(46,43,'nsavic','2019-06-22 00:33:49',1001),(47,46,'joca','2019-06-22 00:36:03',1001),(48,41,'joca','2019-06-22 00:36:15',60001);
 /*!40000 ALTER TABLE `bids` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Temporary table structure for view `max_bids_view`
+-- Temporary view structure for view `max_bids_view`
 --
 
 DROP TABLE IF EXISTS `max_bids_view`;
 /*!50001 DROP VIEW IF EXISTS `max_bids_view`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `max_bids_view` AS SELECT 
  1 AS `bid_id`,
  1 AS `auction_id`,
@@ -158,13 +158,13 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
--- Temporary table structure for view `ratings_by_user_view`
+-- Temporary view structure for view `ratings_by_user_view`
 --
 
 DROP TABLE IF EXISTS `ratings_by_user_view`;
 /*!50001 DROP VIEW IF EXISTS `ratings_by_user_view`*/;
 SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
+SET character_set_client = utf8mb4;
 /*!50001 CREATE VIEW `ratings_by_user_view` AS SELECT 
  1 AS `username`,
  1 AS `rating`*/;
@@ -176,7 +176,7 @@ SET character_set_client = @saved_cs_client;
 
 DROP TABLE IF EXISTS `user_bans`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `user_bans` (
   `banned_user` varchar(45) NOT NULL,
   `ban_time` datetime NOT NULL,
@@ -196,6 +196,7 @@ CREATE TABLE `user_bans` (
 
 LOCK TABLES `user_bans` WRITE;
 /*!40000 ALTER TABLE `user_bans` DISABLE KEYS */;
+INSERT INTO `user_bans` VALUES ('basta98','2019-06-21 22:33:59','','bojsa'),('jeca','2019-06-21 22:24:48','','bojsa');
 /*!40000 ALTER TABLE `user_bans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +206,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_ranks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `user_ranks` (
   `rank_id` int(11) NOT NULL,
   `rank_title` varchar(45) NOT NULL,
@@ -221,7 +222,7 @@ CREATE TABLE `user_ranks` (
 
 LOCK TABLES `user_ranks` WRITE;
 /*!40000 ALTER TABLE `user_ranks` DISABLE KEYS */;
-INSERT INTO `user_ranks` VALUES (2,'Administrator'),(1,'Moderator'),(0,'User');
+INSERT INTO `user_ranks` VALUES (2,'Administrator'),(3,'Banned'),(1,'Moderator'),(0,'User');
 /*!40000 ALTER TABLE `user_ranks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +232,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_ratings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `user_ratings` (
   `rated_user` varchar(45) NOT NULL,
   `rating_user` varchar(45) NOT NULL,
@@ -239,8 +240,8 @@ CREATE TABLE `user_ratings` (
   `rating_time` datetime NOT NULL,
   PRIMARY KEY (`rated_user`,`rating_user`),
   KEY `FK_RATED_USER_idx` (`rating_user`),
-  CONSTRAINT `FK_RATED_USER` FOREIGN KEY (`rated_user`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `FK_RATING_USER` FOREIGN KEY (`rating_user`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `FK_RATED_USER` FOREIGN KEY (`rated_user`) REFERENCES `users` (`username`),
+  CONSTRAINT `FK_RATING_USER` FOREIGN KEY (`rating_user`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -250,7 +251,7 @@ CREATE TABLE `user_ratings` (
 
 LOCK TABLES `user_ratings` WRITE;
 /*!40000 ALTER TABLE `user_ratings` DISABLE KEYS */;
-INSERT INTO `user_ratings` VALUES ('admin1','aki',4,'2019-04-28 19:44:11'),('balsa_knez','aki',3,'2019-04-28 19:37:56');
+INSERT INTO `user_ratings` VALUES ('alek_car','admin',4,'2019-06-22 00:28:59'),('alek_car','miha1997',5,'2019-06-07 19:11:35'),('basta98','admin',3,'2019-06-22 00:28:32'),('basta98','miha1997',5,'2019-06-07 19:11:45'),('bojsa','admin',1,'2019-06-22 00:28:39'),('bojsa','basta98',5,'2019-06-07 19:10:24'),('jeca','joca',4,'2019-06-07 19:02:30'),('miha1997','bojsa',5,'2019-06-21 22:45:01'),('miha1997','joca',5,'2019-06-07 19:02:45');
 /*!40000 ALTER TABLE `user_ratings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,7 +261,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+ SET character_set_client = utf8mb4 ;
 CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -289,7 +290,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES ('admin','admin','Nebojsa','Savic','1997-06-13','male','Serbia','53535353','nebojsasavic6@gmail.com',NULL,2,0,'2019-04-13 17:44:16'),('admin1','$2y$10$ZizgYPZZK3MYMPwhav2LEOwOCRY46b/umUGdiWdWOYi9.NU58YmIa','admin','admin','2019-04-11','Male','serbia','sadsada1231','adminski@gmail.com',NULL,2,0,'2019-04-26 04:17:37'),('aki','$2y$10$oR3F5J5.z1uFly8gTju.WugYNz1k61fQROZLN2SBvFfyR87RBdCoi','Aleksa','Vujovic','2003-05-30','Male','serbia','066 1111111','aki@yanedx.ru','hero.jpg',2,0,'2019-04-28 09:22:23'),('balsa_knez','$2y$10$bdVDD.AARYo2mt3dIDArUu43TrtZ.Nw.V4QQh9MNZL3pjzrcZzR0e','Balsa','Knezevic','2019-04-11','Male','serbia','12312131','balsaknez@gmail.com','IMG_4178.JPG',0,0,'2019-04-21 19:39:36'),('cyber','$2y$10$zZ6NyfT2PaBvtsY5vAM1nuv7oiNwjtFWiVarVlrh0Bg7ZXRhuT3Ci','Nebojsa','Savic','2019-04-03','Male','serbia','1231231','1nebojsa9753@gmail.com','IMG_4178.JPG',0,0,'2019-04-19 17:11:40'),('filip_998','123123131','Filip','Tanic','2019-04-18','Male','serbia','12312131','fafasa@sadasda.com','',0,0,'2019-04-18 22:04:34'),('miha','miki','miha','obrad','1997-05-28','Male','serbia','066 012345','miki@gmail.com','lav.jpg',0,0,'2019-04-26 20:19:52'),('mmarkov','$2y$10$/k/5xj6589wb6yFOEL9NU.ADr5Te8iKX3gCL5yF.gxrxkulc1w0eS','Milica','Markov','2019-04-20','Female','serbia','12313131','mm@mmm.mmm','IMG_4178.JPG',0,0,'2019-04-20 18:13:49'),('mmm','123123123','asdsa','asdada','2019-04-19','Male','serbia','12412414','mmm@mmm.cmm',NULL,0,0,'2019-04-18 23:11:22'),('nnsavi231112','123123123','Nebojsa','Savic','2019-04-12','Male','serbia','sadsadsadsa','mmm@mmm22.cmm','IMG_4178.JPG',0,0,'2019-04-18 23:22:30'),('nnsavic','12312313','Nebojsa','Savic','2019-04-05','Male','serbia','124124141','nebojsa9753@gmail.com','',0,0,'0000-00-00 00:00:00'),('nnsavic1','1231231','Nebojsa','Savic','2019-04-05','Male','serbia','124124141','nebojsa97513@gmail.com','',0,0,'2019-04-18 21:34:05'),('nnsavic2123123','1231231','Nebojsa','Savic','2019-04-13','Male','serbia','1231231','nebojsasav123ic62@gmail.com',NULL,0,0,'2019-04-18 23:05:55'),('nnsavic21232131123123','$2y$10$L0oFQUEB0R8HXjC4WwM3RujJNVzV/Djz5J58r.i9lZcv.tQslMQrK','sadada','asdsadsa','2019-04-12','Male','serbia','12412414','nebojsasa213123vic6@gmail.com1','21148285_677805502418857_1351162169_n.jpg',0,0,'2019-04-18 23:55:34'),('nnsavic213','1231313','Nebojsa','Savic','2019-04-12','Male','serbia','12312131','nebojs2asav2ic62@gmail.com','DSC_0381.JPG',0,0,'2019-04-18 22:07:04'),('nsavic','$2y$10$BFGCUNAGLOSUEGhFmuFVc.K26SpFZa0GHYg0lou4vaM5u9q8KqCu.','Nebojsa','Savic','2019-04-11','Male','serbia','12412414','nebojsa@nebojsa.com','IMG_4178.JPG',1,0,'2019-04-19 00:08:45'),('nsavic123','$2y$10$X.oBNSfUPImk2fNhjUIL7uc0zGWetGcXn23YfVSfVB9xHHQPmATCG','Nebojsa','Savic','2019-05-01','Male','serbia','1231231','nebojs213a9753@gmail.com',NULL,0,0,'2019-04-19 18:02:16'),('sn160078d','1232131','Nebojsa','Savic','2019-04-14','Male','serbia','12412414','nebojsa972513@gmail.com','',0,0,'2019-04-18 21:54:14'),('sn160078d2','1231313','Nebojsa','Savic','2019-04-14','Male','serbia','12412414','nebojsa9725213@gmail.com','',0,0,'2019-04-18 21:54:50');
+INSERT INTO `users` VALUES ('admin','$2y$10$T7sW/doyBP0tUq4XizPHB.Z7KnuXyRpUFicNVtY5mi9u22U/OY4yG','Admin','Adminovic','1992-02-22','Male','Serbia','0623333333','admin@admin.com','287473299e.png',2,0,'2019-06-22 00:27:35'),('alek_car','$2y$10$Y8qqCscuiMiqYgAA9CNyQuriQyy7diWbU9agh5V6ZbOW4LFECKRmy','Aleksandar','Pantic','1998-02-16','Male','Serbia','066 222222','alek@gmail.com','alek.jpg',2,0,'2019-06-07 18:43:30'),('basta98','$2y$10$RHsHkn.6F6y/tWb6rUCo/uauQQOP3EiJV1MTcmiYP6FdQiXvtrDjG','Filip','Tanic','1998-06-10','Male','Serbia','066 121212','fipei@gmail.com','fipe.jpg',3,1,'2019-06-07 18:37:52'),('bojsa','$2y$10$jcJnVV5zNLoOsJWU3yw00.Gnk2269Qm5pGhEq8w4FGWSzA6gZdow2','Nebojsa','Savic','1997-06-13','Male','Serbia','066 123456','sone@gmail.com','sone.jpg',2,0,'2019-06-07 18:22:31'),('jeca','$2y$10$0tejAU0e9N9mPTGgEb3Oueg1RECJeNTV4N4Pb.QUstNfBQ6zsBm4m','Jelena','Dubak','1997-09-19','Female','Serbia','066 1111112','jelenai@gmail.com','jelena.jpg',3,1,'2019-06-07 18:50:36'),('joca','$2y$10$1USjtyohKfMu/Fj3MgBju.ePGS0tWQBzP8uVKeJ/7XlgY5e6xKeZK','Jovana','Topic','1997-02-26','Female','Serbia','066 111123','jovana@gmail.com','jovana.jpg',1,0,'2019-06-07 18:52:34'),('miha1997','$2y$10$1bGhK7fMkV5hlsKb9U9CIu2lz9gwxA6zDezZGrMinhq94U1cBcgf.','Mihailo','Obradovic','1997-05-28','Male','Serbia','066 1111111','miki@gmail.com','miki.jpg',0,0,'2019-06-07 18:16:32'),('nsavic','$2y$10$Z7XjFTjYrP1HesAIAFKRH.WG21VBwCxLnN5WGGhiUrMctbmfRZdui','Nebojsa','Savic','1997-06-13','Male','Serbia','12312131','nebojsa9753@gmail.com','IMG_4178.JPG',1,0,'2019-06-21 22:15:18');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -360,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-04-30  0:44:51
+-- Dump completed on 2019-06-22  0:38:55
